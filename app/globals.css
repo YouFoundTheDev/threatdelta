@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3f0e8;
+  --color-paper-deep: #eae5d8;
+  --color-surface: #fbf9f3;
+  --color-ink: #1b1e1c;
+  --color-ink-soft: #393d39;
+  --color-muted: #6d6e65;
+  --color-line: #d9d3c4;
+  --color-line-strong: #b9b2a1;
+  --color-rust: #8d2f28;
+  --color-rust-soft: #f2e2dc;
+  --color-olive: #516049;
+  --color-olive-soft: #e6eadf;
+  --color-amber: #95621f;
+  --color-amber-soft: #f5ead8;
+  --color-slate: #46505a;
+  --color-slate-soft: #e6e9ea;
+  --color-sidebar: #191d1b;
+  --color-sidebar-line: #2d332f;
+  --color-sidebar-text: #d8d5cc;
+  --color-sidebar-muted: #8c9289;
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background: #e4cfc7;
+    color: #1b1e1c;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rust);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .rule-grid {
+    background-image: linear-gradient(to right, rgba(217, 211, 196, 0.4) 1px, transparent 1px);
+    background-size: 24px 100%;
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+}
