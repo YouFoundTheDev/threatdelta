@@ -1,0 +1,37 @@
+{
+  "id": "lockbit-lineage",
+  "title": "LockBit, 2.0 → 3.0",
+  "eyebrow": "Case 01 · Ransomware lineage",
+  "deck": "A documentation diff of one ransomware-as-a-service lineage, built from public advisories and the current MITRE ATT&CK software mappings.",
+  "asOf": "2023-06-14",
+  "attackVersion": "ATT&CK v18",
+  "scope": "Techniques mapped to LockBit 2.0 (S1199) and LockBit 3.0 (S1202) in MITRE ATT&CK v18, with direct evidence from FBI and CISA reporting.",
+  "universeNote": "The comparison universe is deliberately narrow: the 26 and 34 techniques currently mapped to the two ATT&CK software entries. Advisory-only techniques are out of the diff counts.",
+  "snapshots": [
+    {
+      "id": "lockbit-2.0",
+      "label": "LockBit 2.0",
+      "version": "RaaS successor to LockBit",
+      "releasedAt": "2022-02-04",
+      "period": "Observed since at least June 2021 · snapshot 4 Feb 2022",
+      "sourceIds": ["fbi-lockbit-2-flash", "mitre-s1199"],
+      "summary": "The FBI flash describes a heavily obfuscated Windows encryptor, GPO-driven domain encryption, Stealbit exfiltration and a language exclusion check.",
+      "limitations": "The FBI flash is an IOC bulletin, not an exhaustive TTP catalogue. Some ATT&CK mappings come from vendor analysis cited by MITRE."
+    },
+    {
+      "id": "lockbit-3.0",
+      "label": "LockBit 3.0",
+      "version": "LockBit Black",
+      "releasedAt": "2023-06-14",
+      "period": "Observed since at least June 2022 · snapshot 14 Jun 2023",
+      "sourceIds": ["cisa-aa23-075a", "cisa-aa23-165a", "mitre-s1202", "sentinelone-lockbit3"],
+      "summary": "The 2023 advisories document a more modular build: password-gated payloads, Safe Mode reboot, mutex checks, PsExec spreading and broader defence impairment.",
+      "limitations": "The June advisory covers LockBit affiliates broadly, not just 3.0. The March advisory is the stronger source for build-specific behaviour."
+    }
+  ],
+  "caveats": [
+    "Newly documented is not the same as newly adopted. A technique can appear in a later public report because reporting improved, because a new source was cited, or because the mapping was refined.",
+    "A missing public Sigma rule is not evidence that an organisation has no detection. The catalogue is small and does not represent any particular telemetry estate.",
+    "The diff compares ATT&CK software mappings, not incident prevalence. Counts describe documentation, not adversary frequency."
+  ]
+}

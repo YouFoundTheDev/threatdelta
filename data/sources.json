@@ -1,0 +1,76 @@
+[
+  {
+    "id": "fbi-lockbit-2-flash",
+    "title": "Indicators of Compromise Associated with LockBit 2.0 Ransomware",
+    "publisher": "Federal Bureau of Investigation",
+    "kind": "government",
+    "publishedAt": "2022-02-04",
+    "url": "https://www.ic3.gov/CSA/2022/220204.pdf",
+    "note": "FBI Flash CU-000162-MW, TLP:WHITE. Coordinated with CISA."
+  },
+  {
+    "id": "cisa-aa23-075a",
+    "title": "#StopRansomware: LockBit 3.0",
+    "publisher": "CISA, FBI, MS-ISAC",
+    "kind": "government",
+    "publishedAt": "2023-03-16",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a",
+    "note": "Joint advisory AA23-075A. Includes LockBit 3.0 command-line parameters, registry artifacts and ATT&CK table."
+  },
+  {
+    "id": "cisa-aa23-165a",
+    "title": "Understanding Ransomware Threat Actors: LockBit",
+    "publisher": "CISA, FBI, MS-ISAC and international partners",
+    "kind": "government",
+    "publishedAt": "2023-06-14",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a",
+    "note": "Joint advisory AA23-165A. Broad LockBit affiliate TTP review with ATT&CK tables 5\u201316."
+  },
+  {
+    "id": "mitre-s1199",
+    "title": "MITRE ATT&CK \u2014 LockBit 2.0 (S1199)",
+    "publisher": "MITRE ATT&CK",
+    "kind": "mitre",
+    "publishedAt": "2025-10-21",
+    "url": "https://attack.mitre.org/software/S1199/",
+    "retrievedAt": "2026-10-26",
+    "note": "Living Enterprise ATT&CK dataset (v18); page last modified 21 Oct 2025, retrieved 26 Oct 2026."
+  },
+  {
+    "id": "mitre-s1202",
+    "title": "MITRE ATT&CK \u2014 LockBit 3.0 (S1202)",
+    "publisher": "MITRE ATT&CK",
+    "kind": "mitre",
+    "publishedAt": "2025-10-21",
+    "url": "https://attack.mitre.org/software/S1202/",
+    "retrievedAt": "2026-10-26",
+    "note": "Living Enterprise ATT&CK dataset (v18); page last modified 21 Oct 2025, retrieved 26 Oct 2026."
+  },
+  {
+    "id": "sentinelone-lockbit3",
+    "title": "LockBit 3.0 Update: Unpicking the Ransomware's Latest Anti-Analysis and Evasion Techniques",
+    "publisher": "SentinelOne Labs",
+    "kind": "vendor",
+    "publishedAt": "2022-07-21",
+    "url": "https://www.sentinelone.com/labs/lockbit-3-0-update-unpicking-the-ransomwares-latest-anti-analysis-and-evasion-techniques/",
+    "note": "Vendor technical analysis cited by MITRE for debugger evasion, CMSTP abuse and service installation."
+  },
+  {
+    "id": "unit42-lockbit2",
+    "title": "LockBit 2.0: How This RaaS Operates and How to Protect Against It",
+    "publisher": "Palo Alto Networks Unit 42",
+    "kind": "vendor",
+    "publishedAt": "2022-06-09",
+    "url": "https://unit42.paloaltonetworks.com/lockbit-2-ransomware/",
+    "note": "Vendor analysis cited by MITRE for LockBit 2.0 execution, discovery, persistence and lateral movement."
+  },
+  {
+    "id": "sigma-hq",
+    "title": "SigmaHQ detection rule repository",
+    "publisher": "SigmaHQ",
+    "kind": "community",
+    "publishedAt": "2026-10-26",
+    "url": "https://github.com/SigmaHQ/sigma",
+    "note": "Public Sigma rules are reproduced as metadata and source links only. Rule text remains subject to the SigmaHQ Detection Rule License."
+  }
+]
