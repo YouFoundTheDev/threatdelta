@@ -1,0 +1,794 @@
+[
+  {
+    "id": "T1021",
+    "name": "Remote Services",
+    "tactics": [
+      "lateral-movement"
+    ],
+    "tacticLabels": [
+      "Lateral Movement"
+    ],
+    "description": "Adversaries may use Valid Accounts to log into a service that accepts remote connections, such as telnet, SSH, and VNC.",
+    "url": "https://attack.mitre.org/techniques/T1021/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1021.002",
+    "name": "SMB/Windows Admin Shares",
+    "tactics": [
+      "lateral-movement"
+    ],
+    "tacticLabels": [
+      "Lateral Movement"
+    ],
+    "description": "Adversaries may use Valid Accounts to interact with a remote network share using Server Message Block (SMB).",
+    "url": "https://attack.mitre.org/techniques/T1021/002/",
+    "subtechniqueOf": "T1021"
+  },
+  {
+    "id": "T1027",
+    "name": "Obfuscated Files or Information",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may attempt to make an executable or file difficult to discover or analyze by encrypting, encoding, or otherwise obfuscating its contents on the system or in transit.",
+    "url": "https://attack.mitre.org/techniques/T1027/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1027.002",
+    "name": "Software Packing",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may perform software packing or virtual machine software protection to conceal their code.",
+    "url": "https://attack.mitre.org/techniques/T1027/002/",
+    "subtechniqueOf": "T1027"
+  },
+  {
+    "id": "T1027.013",
+    "name": "Encrypted/Encoded File",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may encrypt or encode files to obfuscate strings, bytes, and other specific patterns to impede detection.",
+    "url": "https://attack.mitre.org/techniques/T1027/013/",
+    "subtechniqueOf": "T1027"
+  },
+  {
+    "id": "T1047",
+    "name": "Windows Management Instrumentation",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse Windows Management Instrumentation (WMI) to execute malicious commands and payloads.",
+    "url": "https://attack.mitre.org/techniques/T1047/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1053",
+    "name": "Scheduled Task/Job",
+    "tactics": [
+      "execution",
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Execution",
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may abuse task scheduling functionality to facilitate initial or recurring execution of malicious code.",
+    "url": "https://attack.mitre.org/techniques/T1053/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1053.005",
+    "name": "Scheduled Task",
+    "tactics": [
+      "execution",
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Execution",
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may abuse the Windows Task Scheduler to perform task scheduling for initial or recurring execution of malicious code.",
+    "url": "https://attack.mitre.org/techniques/T1053/005/",
+    "subtechniqueOf": "T1053"
+  },
+  {
+    "id": "T1057",
+    "name": "Process Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may attempt to get information about running processes on a system.",
+    "url": "https://attack.mitre.org/techniques/T1057/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1059",
+    "name": "Command and Scripting Interpreter",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries.",
+    "url": "https://attack.mitre.org/techniques/T1059/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1059.001",
+    "name": "PowerShell",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse PowerShell commands and scripts for execution.",
+    "url": "https://attack.mitre.org/techniques/T1059/001/",
+    "subtechniqueOf": "T1059"
+  },
+  {
+    "id": "T1059.003",
+    "name": "Windows Command Shell",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse the Windows command shell for execution.",
+    "url": "https://attack.mitre.org/techniques/T1059/003/",
+    "subtechniqueOf": "T1059"
+  },
+  {
+    "id": "T1070",
+    "name": "Indicator Removal",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may selectively delete or modify artifacts generated to reduce indications of their presence and blend in with legitimate activity.",
+    "url": "https://attack.mitre.org/techniques/T1070/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1070.004",
+    "name": "File Deletion",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may delete files left behind by the actions of their intrusion activity.",
+    "url": "https://attack.mitre.org/techniques/T1070/004/",
+    "subtechniqueOf": "T1070"
+  },
+  {
+    "id": "T1071",
+    "name": "Application Layer Protocol",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic.",
+    "url": "https://attack.mitre.org/techniques/T1071/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1071.001",
+    "name": "Web Protocols",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic.",
+    "url": "https://attack.mitre.org/techniques/T1071/001/",
+    "subtechniqueOf": "T1071"
+  },
+  {
+    "id": "T1078",
+    "name": "Valid Accounts",
+    "tactics": [
+      "initial-access",
+      "persistence",
+      "privilege-escalation",
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Initial Access",
+      "Persistence",
+      "Privilege Escalation",
+      "Stealth"
+    ],
+    "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+    "url": "https://attack.mitre.org/techniques/T1078/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1078.003",
+    "name": "Local Accounts",
+    "tactics": [
+      "initial-access",
+      "persistence",
+      "privilege-escalation",
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Initial Access",
+      "Persistence",
+      "Privilege Escalation",
+      "Stealth"
+    ],
+    "description": "Adversaries may obtain and abuse credentials of a local account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion.",
+    "url": "https://attack.mitre.org/techniques/T1078/003/",
+    "subtechniqueOf": "T1078"
+  },
+  {
+    "id": "T1082",
+    "name": "System Information Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "An adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture.",
+    "url": "https://attack.mitre.org/techniques/T1082/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1083",
+    "name": "File and Directory Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may enumerate files and directories or may search in specific locations of a host or network share for certain information within a file system.",
+    "url": "https://attack.mitre.org/techniques/T1083/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1106",
+    "name": "Native API",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may interact with the native OS application programming interface (API) to execute behaviors.",
+    "url": "https://attack.mitre.org/techniques/T1106/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1112",
+    "name": "Modify Registry",
+    "tactics": [
+      "persistence",
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may interact with the Windows Registry as part of a variety of other techniques to aid in defense evasion, persistence, and execution.",
+    "url": "https://attack.mitre.org/techniques/T1112/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1120",
+    "name": "Peripheral Device Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may attempt to gather information about attached peripheral devices and components connected to a computer system.",
+    "url": "https://attack.mitre.org/techniques/T1120/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1132",
+    "name": "Data Encoding",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may encode data to make the content of command and control traffic more difficult to detect.",
+    "url": "https://attack.mitre.org/techniques/T1132/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1132.001",
+    "name": "Standard Encoding",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may encode data with a standard data encoding system to make the content of command and control traffic more difficult to detect.",
+    "url": "https://attack.mitre.org/techniques/T1132/001/",
+    "subtechniqueOf": "T1132"
+  },
+  {
+    "id": "T1135",
+    "name": "Network Share Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may look for folders and drives shared on remote systems as a means of identifying sources of information to gather as a precursor for Collection and to identify potential systems of interest for Lateral Movement.",
+    "url": "https://attack.mitre.org/techniques/T1135/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1136",
+    "name": "Create Account",
+    "tactics": [
+      "persistence"
+    ],
+    "tacticLabels": [
+      "Persistence"
+    ],
+    "description": "Adversaries may create an account to maintain access to victim systems.",
+    "url": "https://attack.mitre.org/techniques/T1136/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1140",
+    "name": "Deobfuscate/Decode Files or Information",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may use Obfuscated Files or Information to hide artifacts of an intrusion from analysis.",
+    "url": "https://attack.mitre.org/techniques/T1140/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1218",
+    "name": "System Binary Proxy Execution",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may bypass process and/or signature-based defenses by proxying execution of malicious content with signed, or otherwise trusted, binaries.",
+    "url": "https://attack.mitre.org/techniques/T1218/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1218.003",
+    "name": "CMSTP",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may abuse CMSTP to proxy execution of malicious code.",
+    "url": "https://attack.mitre.org/techniques/T1218/003/",
+    "subtechniqueOf": "T1218"
+  },
+  {
+    "id": "T1480",
+    "name": "Execution Guardrails",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may use execution guardrails to constrain execution or actions based on adversary supplied and environment specific conditions that are expected to be present on the target.",
+    "url": "https://attack.mitre.org/techniques/T1480/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1480.002",
+    "name": "Mutual Exclusion",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may constrain execution or actions based on the presence of a mutex associated with malware.",
+    "url": "https://attack.mitre.org/techniques/T1480/002/",
+    "subtechniqueOf": "T1480"
+  },
+  {
+    "id": "T1484",
+    "name": "Domain or Tenant Policy Modification",
+    "tactics": [
+      "privilege-escalation",
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation",
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may modify the configuration settings of a domain or identity tenant to evade defenses and/or escalate privileges in centrally managed environments.",
+    "url": "https://attack.mitre.org/techniques/T1484/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1484.001",
+    "name": "Group Policy Modification",
+    "tactics": [
+      "privilege-escalation",
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation",
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may modify Group Policy Objects (GPOs) to subvert the intended discretionary access controls for a domain, usually with the intention of escalating privileges on the domain.",
+    "url": "https://attack.mitre.org/techniques/T1484/001/",
+    "subtechniqueOf": "T1484"
+  },
+  {
+    "id": "T1485",
+    "name": "Data Destruction",
+    "tactics": [
+      "impact"
+    ],
+    "tacticLabels": [
+      "Impact"
+    ],
+    "description": "Adversaries may destroy data and files on specific systems or in large numbers on a network to interrupt availability to systems, services, and network resources.",
+    "url": "https://attack.mitre.org/techniques/T1485/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1486",
+    "name": "Data Encrypted for Impact",
+    "tactics": [
+      "impact"
+    ],
+    "tacticLabels": [
+      "Impact"
+    ],
+    "description": "Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources.",
+    "url": "https://attack.mitre.org/techniques/T1486/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1489",
+    "name": "Service Stop",
+    "tactics": [
+      "impact"
+    ],
+    "tacticLabels": [
+      "Impact"
+    ],
+    "description": "Adversaries may stop or disable services on a system to render those services unavailable to legitimate users.",
+    "url": "https://attack.mitre.org/techniques/T1489/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1490",
+    "name": "Inhibit System Recovery",
+    "tactics": [
+      "impact"
+    ],
+    "tacticLabels": [
+      "Impact"
+    ],
+    "description": "Adversaries may delete or remove built-in data and turn off services designed to aid in the recovery of a corrupted system to prevent recovery.",
+    "url": "https://attack.mitre.org/techniques/T1490/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1543",
+    "name": "Create or Modify System Process",
+    "tactics": [
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may create or modify system-level processes to repeatedly execute malicious payloads as part of persistence.",
+    "url": "https://attack.mitre.org/techniques/T1543/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1543.003",
+    "name": "Windows Service",
+    "tactics": [
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may create or modify Windows services to repeatedly execute malicious payloads as part of persistence.",
+    "url": "https://attack.mitre.org/techniques/T1543/003/",
+    "subtechniqueOf": "T1543"
+  },
+  {
+    "id": "T1547",
+    "name": "Boot or Logon Autostart Execution",
+    "tactics": [
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may configure system settings to automatically execute a program during system boot or logon to maintain persistence or gain higher-level privileges on compromised systems.",
+    "url": "https://attack.mitre.org/techniques/T1547/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1547.001",
+    "name": "Registry Run Keys / Startup Folder",
+    "tactics": [
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may achieve persistence by adding a program to a startup folder or referencing it with a Registry run key.",
+    "url": "https://attack.mitre.org/techniques/T1547/001/",
+    "subtechniqueOf": "T1547"
+  },
+  {
+    "id": "T1547.004",
+    "name": "Winlogon Helper DLL",
+    "tactics": [
+      "persistence",
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may abuse features of Winlogon to execute DLLs and/or executables when a user logs in.",
+    "url": "https://attack.mitre.org/techniques/T1547/004/",
+    "subtechniqueOf": "T1547"
+  },
+  {
+    "id": "T1548",
+    "name": "Abuse Elevation Control Mechanism",
+    "tactics": [
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may circumvent mechanisms designed to control privilege elevation to gain higher-level permissions.",
+    "url": "https://attack.mitre.org/techniques/T1548/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1548.002",
+    "name": "Bypass User Account Control",
+    "tactics": [
+      "privilege-escalation"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation"
+    ],
+    "description": "Adversaries may bypass UAC mechanisms to elevate process privileges on system.",
+    "url": "https://attack.mitre.org/techniques/T1548/002/",
+    "subtechniqueOf": "T1548"
+  },
+  {
+    "id": "T1564",
+    "name": "Hide Artifacts",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may attempt to hide artifacts associated with their behaviors to evade detection.",
+    "url": "https://attack.mitre.org/techniques/T1564/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1564.003",
+    "name": "Hidden Window",
+    "tactics": [
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Stealth"
+    ],
+    "description": "Adversaries may use hidden windows to conceal malicious activity from the plain sight of users.",
+    "url": "https://attack.mitre.org/techniques/T1564/003/",
+    "subtechniqueOf": "T1564"
+  },
+  {
+    "id": "T1569",
+    "name": "System Services",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse system services or daemons to execute commands or programs.",
+    "url": "https://attack.mitre.org/techniques/T1569/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1569.002",
+    "name": "Service Execution",
+    "tactics": [
+      "execution"
+    ],
+    "tacticLabels": [
+      "Execution"
+    ],
+    "description": "Adversaries may abuse the Windows service control manager to execute malicious commands or payloads.",
+    "url": "https://attack.mitre.org/techniques/T1569/002/",
+    "subtechniqueOf": "T1569"
+  },
+  {
+    "id": "T1573",
+    "name": "Encrypted Channel",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may employ an encryption algorithm to conceal command and control traffic rather than relying on any inherent protections provided by a communication protocol.",
+    "url": "https://attack.mitre.org/techniques/T1573/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1573.001",
+    "name": "Symmetric Cryptography",
+    "tactics": [
+      "command-and-control"
+    ],
+    "tacticLabels": [
+      "Command and Control"
+    ],
+    "description": "Adversaries may employ a known symmetric encryption algorithm to conceal command and control traffic rather than relying on any inherent protections provided by a communication protocol.",
+    "url": "https://attack.mitre.org/techniques/T1573/001/",
+    "subtechniqueOf": "T1573"
+  },
+  {
+    "id": "T1614",
+    "name": "System Location Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may gather information in an attempt to calculate the geographical location of a victim host.",
+    "url": "https://attack.mitre.org/techniques/T1614/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1614.001",
+    "name": "System Language Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may attempt to gather information about the system language of a victim in order to infer the geographical location of that host.",
+    "url": "https://attack.mitre.org/techniques/T1614/001/",
+    "subtechniqueOf": "T1614"
+  },
+  {
+    "id": "T1622",
+    "name": "Debugger Evasion",
+    "tactics": [
+      "stealth",
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Stealth",
+      "Discovery"
+    ],
+    "description": "Adversaries may employ various means to detect and avoid debuggers.",
+    "url": "https://attack.mitre.org/techniques/T1622/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1680",
+    "name": "Local Storage Discovery",
+    "tactics": [
+      "discovery"
+    ],
+    "tacticLabels": [
+      "Discovery"
+    ],
+    "description": "Adversaries may enumerate local drives, disks, and/or volumes and their attributes like total or free space and volume serial number.",
+    "url": "https://attack.mitre.org/techniques/T1680/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1685",
+    "name": "Disable or Modify Tools",
+    "tactics": [
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or\u2026",
+    "url": "https://attack.mitre.org/techniques/T1685/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1685.005",
+    "name": "Clear Windows Event Logs",
+    "tactics": [
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may clear Windows Event Logs to hide the activity of an intrusion.",
+    "url": "https://attack.mitre.org/techniques/T1685/005/",
+    "subtechniqueOf": "T1685"
+  },
+  {
+    "id": "T1688",
+    "name": "Safe Mode Boot",
+    "tactics": [
+      "defense-impairment"
+    ],
+    "tacticLabels": [
+      "Defense Impairment"
+    ],
+    "description": "Adversaries may abuse Windows safe mode to disable endpoint defenses.",
+    "url": "https://attack.mitre.org/techniques/T1688/",
+    "subtechniqueOf": null
+  }
+]
