@@ -1,0 +1,1598 @@
+[
+  {
+    "id": "obs-lockbit-2.0-t1021-002",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1021.002",
+    "claim": "LockBit 2.0 has the ability to move laterally via SMB.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1021-002-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 has the ability to move laterally via SMB.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1047",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1047",
+    "claim": "LockBit 2.0 can use wmic.exe to delete volume shadow copies.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE maps a WMI deletion capability, but the FBI field sample records the observed wmic command failing syntax validation. Treat the capability as version- and variant-dependent.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1047-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can use wmic.exe to delete volume shadow copies.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1047-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "cmd.exe /c wmic SHADOWCOPY /nointeractive",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Command Line Activity \u2014 \u201cinvalid syntax and errors out\u201d"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1053-005",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1053.005",
+    "claim": "LockBit 2.0 can be executed via scheduled task.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1053-005-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can be executed via scheduled task.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1057",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1057",
+    "claim": "LockBit 2.0 can determine if a running process has administrative privileges and terminate processes that interfere with encryption or exfiltration.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1057-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can determine if a running process has administrative privileges and terminate processes that interfere with encryption or exfiltration.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1057-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "determining if the process has administrative privileges. If privileges are not sufficient, it attempts to escalate to the required privileges.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1059-001",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1059.001",
+    "claim": "LockBit 2.0 can use the PowerShell module `InvokeGPUpdate` to modify Group Policy.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1059-001-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can use the PowerShell module `InvokeGPUpdate` to modify Group Policy.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1059-001-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "PowerShell Command \u2013 Force GPO Policy",
+        "locator": "FBI Flash CU-000162-MW \u00b7 PowerShell command (Invoke-GPUpdate over AD computers)"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1059-003",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1059.003",
+    "claim": "LockBit 2.0 can use the Windows command shell for multiple post-compromise actions on objective.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1059-003-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can use the Windows command shell for multiple post-compromise actions on objective.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1059-003-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "cmd.exe /c vssadmin Delete Shadows /All /Quiet",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Command Line Activity"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1070-004",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1070.004",
+    "claim": "LockBit 2.0 can delete itself from disk after execution.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1070-004-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can delete itself from disk after execution.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1070-004-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Once completed, Lockbit 2.0 deletes itself from disk and creates persistence at startup.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1082",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1082",
+    "claim": "LockBit 2.0 can enumerate system information including hostname and domain information.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1082-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can enumerate system information including hostname and domain information.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1082-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 enumerates system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1083",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1083",
+    "claim": "LockBit 2.0 can exclude files associated with core system functions from encryption.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1083-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can exclude files associated with core system functions from encryption.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1083-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 attempts to encrypt any data saved to any local or remote device but skips files associated with core system functions.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1112",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1112",
+    "claim": "LockBit 2.0 can create Registry keys to bypass UAC and for persistence.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1112-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can create Registry keys to bypass UAC and for persistence.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1112-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Created - Persistence Key: HKEY_CURENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\{GUID}",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Registry Keys"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1120",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1120",
+    "claim": "LockBit 2.0 has the ability to identify mounted external storage devices.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1120-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 has the ability to identify mounted external storage devices.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1120-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 enumerates system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1135",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1135",
+    "claim": "LockBit 2.0 can discover remote shares.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1135-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can discover remote shares.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1135-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 enumerates system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1136",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1136",
+    "claim": "LockBit 2.0 has been observed creating accounts for persistence using simple names like \"a\".",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1136-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 has been observed creating accounts for persistence using simple names like \"a\".",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1140",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1140",
+    "claim": "LockBit 2.0 can decode scripts and strings in loaded modules.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1140-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can decode scripts and strings in loaded modules.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1140-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "LockBit 2.0 is best described as a heavily obfuscated ransomware application leveraging bitwise operations to decode strings and load required modules to evade detection.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1480",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1480",
+    "claim": "LockBit 2.0 will not execute on hosts where the system language is set to a language spoken in the Commonwealth of Independent States region.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1480-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 will not execute on hosts where the system language is set to a language spoken in the Commonwealth of Independent States region.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1480-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 then determines the system and user language settings and only targets those not matching a set list of languages that are Eastern European. If an Eastern European language is detected, the program exits without infection.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1484-001",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1484.001",
+    "claim": "LockBit 2.0 can modify Group Policy to disable Windows Defender and to automatically infect devices in Windows domains.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1484-001-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can modify Group Policy to disable Windows Defender and to automatically infect devices in Windows domains.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1484-001-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "In July 2021, LockBit 2.0 released an update which featured the automatic encryption of devices across windows domains by abusing Active Directory group policies.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Summary"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1486",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1486",
+    "claim": "LockBit 2.0 can use standard AES and elliptic-curve cryptography algorithms to encrypt victim data.",
+    "confidence": "high",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1486-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can use standard AES and elliptic-curve cryptography algorithms to encrypt victim data.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1486-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 attempts to encrypt any data saved to any local or remote device but skips files associated with core system functions.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1489",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1489",
+    "claim": "LockBit 2.0 can automatically terminate processes that may interfere with the encryption or file extraction processes.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1489-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can automatically terminate processes that may interfere with the encryption or file extraction processes.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1490",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1490",
+    "claim": "LockBit 2.0 has the ability to delete volume shadow copies on targeted hosts.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1490-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 has the ability to delete volume shadow copies on targeted hosts.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1490-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "cmd.exe /c vssadmin Delete Shadows /All /Quiet",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Command Line Activity \u2014 Deletes Shadow Copies"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1547-001",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1547.001",
+    "claim": "LockBit 2.0 can use a Registry Run key to establish persistence at startup.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1547-001-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can use a Registry Run key to establish persistence at startup.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1547-001-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Created - Persistence Key: HKEY_CURENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\{GUID}",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Registry Keys"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1548-002",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1548.002",
+    "claim": "LockBit 2.0 can bypass UAC through creating the Registry key `HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows NT\\CurrentVersion\\ICM\\Calibration`.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1548-002-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can bypass UAC through creating the Registry key `HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows NT\\CurrentVersion\\ICM\\Calibration`.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1548-002-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Created - UAC Bypass Key: HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows NT\\CurrentVersion\\ICM\\Calibration",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Registry Keys"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1564-003",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1564.003",
+    "claim": "LockBit 2.0 can execute command line arguments in a hidden window.",
+    "confidence": "high",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1564-003-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can execute command line arguments in a hidden window.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1564-003-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 Status / Debug Window is activated when Shift + F1 is pressed.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Hidden debug / Status Window"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1614-001",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1614.001",
+    "claim": "LockBit 2.0 can check if a targeted machine is using a set of Eastern European languages and exit without infection if so.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1614-001-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can check if a targeted machine is using a set of Eastern European languages and exit without infection if so.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1614-001-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 then determines the system and user language settings and only targets those not matching a set list of languages that are Eastern European. If an Eastern European language is detected, the program exits without infection.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1680",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1680",
+    "claim": "LockBit 2.0 can enumerate local drive configuration.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1680-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can enumerate local drive configuration.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1680-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Lockbit 2.0 enumerates system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1685",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1685",
+    "claim": "LockBit 2.0 can disable firewall rules and anti-malware and monitoring software including Windows Defender.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1685-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can disable firewall rules and anti-malware and monitoring software including Windows Defender.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1685-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "Group Policy Update \u2013 Windows Defender Disable",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Windows Defender disable policy"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-2.0-t1685-005",
+    "snapshotId": "lockbit-2.0",
+    "techniqueId": "T1685.005",
+    "claim": "LockBit 2.0 can delete log files through the use of wevtutil.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1199",
+      "fbi-lockbit-2-flash"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-2.0-t1685-005-mitre",
+        "sourceId": "mitre-s1199",
+        "kind": "mapping",
+        "quote": "LockBit 2.0 can delete log files through the use of wevtutil.",
+        "locator": "MITRE ATT&CK S1199 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-2.0-t1685-005-fbi-lockbit-2-flash",
+        "sourceId": "fbi-lockbit-2-flash",
+        "kind": "direct",
+        "quote": "cmd.exe /c wevtutil cl security",
+        "locator": "FBI Flash CU-000162-MW \u00b7 Command Line Activity \u2014 Deletes security log"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1021-002",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1021.002",
+    "claim": "LockBit 3.0 can use SMB for lateral movement.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1021-002-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use SMB for lateral movement.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1027-002",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1027.002",
+    "claim": "LockBit 3.0 can use code packing to hinder analysis.",
+    "confidence": "high",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1027-002-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use code packing to hinder analysis.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1027-002-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates may perform software packing or virtual machine software protection to conceal their code. Blister Loader has been used for such purpose.",
+        "locator": "CISA AA23-165A \u00b7 Table 9, Defense Evasion"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1027-013",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1027.013",
+    "claim": "The LockBit 3.0 payload includes an encrypted main component.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1027-013-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "The LockBit 3.0 payload includes an encrypted main component.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1027-013-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "The password is a cryptographic key which decodes the LockBit 3.0 executable.",
+        "locator": "CISA AA23-075A \u00b7 Technical Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1057",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1057",
+    "claim": "LockBit 3.0 can identify and terminate specific services.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1057-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can identify and terminate specific services.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1059-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1059.001",
+    "claim": "LockBit 3.0 can use PowerShell to apply Group Policy changes.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1059-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use PowerShell to apply Group Policy changes.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1059-001-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "Once new group policies are added, a PowerShell command using Group Policy update (GPUpdate) applies the new group policy changes to all computers on the AD domain.",
+        "locator": "CISA AA23-075A \u00b7 Force GPUpdate"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1070-004",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1070.004",
+    "claim": "LockBit 3.0 can delete itself from disk.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1070-004-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can delete itself from disk.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1070-004-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 will delete itself from the disk.",
+        "locator": "CISA AA23-165A \u00b7 Table 9, Defense Evasion"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1071-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1071.001",
+    "claim": "LockBit 3.0 can use HTTP to send victim host information to C2.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1071-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use HTTP to send victim host information to C2.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1071-001-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates use ThunderShell as a remote access tool that communicates via HTTP requests.",
+        "locator": "CISA AA23-165A \u00b7 Table 14, Command and Control"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1078-003",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1078.003",
+    "claim": "LockBit 3.0 can use a compromised local account for lateral movement.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1078-003-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use a compromised local account for lateral movement.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1078-003-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 attempts to spread across a victim network by using a preconfigured list of credentials hardcoded at compilation time or a compromised local account with elevated privileges [T1078].",
+        "locator": "CISA AA23-075A \u00b7 Execution and Infection Process",
+        "citedAs": "T1078"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1082",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1082",
+    "claim": "LockBit 3.0 can enumerate system hostname and domain.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1082-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can enumerate system hostname and domain.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1082-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates will enumerate system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "CISA AA23-165A \u00b7 Table 11, Discovery"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1083",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1083",
+    "claim": "LockBit 3.0 can exclude files associated with core system functions from encryption.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1083-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can exclude files associated with core system functions from encryption.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1083-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "but skips files associated with core system functions",
+        "locator": "CISA AA23-075A \u00b7 Execution and Infection Process"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1106",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1106",
+    "claim": "LockBit 3.0 has the ability to directly call native Windows API items during execution.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1106-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 has the ability to directly call native Windows API items during execution.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1112",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1112",
+    "claim": "LockBit 3.0 can change the Registry values for Group Policy refresh time, to disable SmartScreen, and to disable Windows Defender.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1112-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can change the Registry values for Group Policy refresh time, to disable SmartScreen, and to disable Windows Defender.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1120",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1120",
+    "claim": "LockBit 3.0 has the ability to discover external storage devices.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1120-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 has the ability to discover external storage devices.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1120-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates will enumerate system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "CISA AA23-165A \u00b7 Table 11, Discovery"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1132-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1132.001",
+    "claim": "LockBit 3.0 can Base64-encode C2 communication.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1132-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can Base64-encode C2 communication.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1132-001-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "Information about the victim host and bot are encrypted with an Advanced Encryption Standard (AES) key and encoded in Base64.",
+        "locator": "CISA AA23-075A \u00b7 Network Connections"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1135",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1135",
+    "claim": "LockBit 3.0 can identify network shares on compromised systems.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1135-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can identify network shares on compromised systems.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1135-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates will enumerate system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "CISA AA23-165A \u00b7 Table 11, Discovery"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1140",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1140",
+    "claim": "The LockBit 3.0 payload is decrypted at runtime.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1140-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "The LockBit 3.0 payload is decrypted at runtime.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1218-003",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1218.003",
+    "claim": "LockBit 3.0 can attempt a CMSTP UAC bypass if it does not have administrative privileges.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1218-003-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can attempt a CMSTP UAC bypass if it does not have administrative privileges.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1480",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1480",
+    "claim": "LockBit 3.0 can make execution dependent on specific parameters including a unique passphrase and the system language of the targeted host not being found on a set exclusion list.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1480-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can make execution dependent on specific parameters including a unique passphrase and the system language of the targeted host not being found on a set exclusion list.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1480-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "If a LockBit affiliate does not have access to passwordless LockBit 3.0 ransomware, then a password argument is mandatory during the execution of the ransomware. LockBit 3.0 affiliates failing to enter the correct password will be unable to execute the ransomware [T1480.001].",
+        "locator": "CISA AA23-075A \u00b7 Technical Details",
+        "citedAs": "T1480.001"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1480-002",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1480.002",
+    "claim": "LockBit 3.0 can create and check for a mutex containing a hash of the `MachineGUID` value at execution to prevent running more than one instance.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1480-002-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can create and check for a mutex containing a hash of the `MachineGUID` value at execution to prevent running more than one instance.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1480-002-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "When executed, LockBit 3.0 will create the mutex, Global\\<MD4 hash of machine GUID>, and check to see if this mutex has already been created to avoid running more than one instance of the ransomware.",
+        "locator": "CISA AA23-075A \u00b7 Mutual Exclusion Object (Mutex) Created"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1484-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1484.001",
+    "claim": "LockBit 3.0 can enable options for propogation through Group Policy Objects.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1484-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can enable options for propogation through Group Policy Objects.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1484-001-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates may create Group Policy for lateral movement and can force group policy updates.",
+        "locator": "CISA AA23-165A \u00b7 Table 8, Privilege Escalation"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1486",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1486",
+    "claim": "LockBit 3.0 can encrypt targeted data using the AES-256, ChaCha20, or RSA-2048 algorithms.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1486-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can encrypt targeted data using the AES-256, ChaCha20, or RSA-2048 algorithms.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1486-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 encrypts data on target systems to interrupt availability to system and network resources.",
+        "locator": "CISA AA23-165A \u00b7 Table 16, Impact"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1489",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1489",
+    "claim": "LockBit 3.0 can terminate targeted processes and services related to security, backup, database management, and other applications that could stop or interfere with encryption.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1489-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can terminate targeted processes and services related to security, backup, database management, and other applications that could stop or interfere with encryption.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1489-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 terminates processes and services.",
+        "locator": "CISA AA23-165A \u00b7 Table 16, Impact"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1490",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1490",
+    "claim": "LockBit 3.0 can delete volume shadow copies.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1490-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can delete volume shadow copies.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1490-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 deletes volume shadow copies residing on disk.",
+        "locator": "CISA AA23-165A \u00b7 Table 16, Impact"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1490-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 uses Windows Management Instrumentation (WMI) to identify and delete Volume Shadow Copies.",
+        "locator": "CISA AA23-075A \u00b7 Volume Shadow Copy Deletion"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1543-003",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1543.003",
+    "claim": "LockBit 3.0 can install system services for persistence.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1543-003-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can install system services for persistence.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1547-004",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1547.004",
+    "claim": "LockBit 3.0 can enable automatic logon through the `SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon` Registry key.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1547-004-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can enable automatic logon through the `SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon` Registry key.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1547-004-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "Enable Automatic Logon",
+        "locator": "CISA AA23-075A \u00b7 Registry Artifacts \u2014 SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon (AutoAdminLogon=1, DefaultPassword)"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1548-002",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1548.002",
+    "claim": "LockBit 3.0 can bypass UAC to execute code with elevated privileges through an elevated Component Object Model (COM) interface.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1548-002-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can bypass UAC to execute code with elevated privileges through an elevated Component Object Model (COM) interface.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1548-002-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 is capable of bypassing User Account Control (UAC) to execute code with elevated privileges via elevated Component Object Model (COM) Interface.",
+        "locator": "CISA AA23-075A \u00b7 UAC Bypass via Elevated COM Interface"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1569-002",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1569.002",
+    "claim": "LockBit 3.0 can use PsExec to execute commands and payloads.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1569-002-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can use PsExec to execute commands and payloads.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1569-002-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 uses PsExec to execute commands or payloads.",
+        "locator": "CISA AA23-165A \u00b7 Table 6, Execution"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1573-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1573.001",
+    "claim": "LockBit 3.0 can encrypt C2 communications with AES.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1573-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can encrypt C2 communications with AES.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1573-001-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "Information about the victim host and bot are encrypted with an Advanced Encryption Standard (AES) key and encoded in Base64.",
+        "locator": "CISA AA23-075A \u00b7 Network Connections"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1614-001",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1614.001",
+    "claim": "LockBit 3.0 will not affect machines with language settings matching a defined exlusion list of mainly Eastern European languages.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1614-001-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 will not affect machines with language settings matching a defined exlusion list of mainly Eastern European languages.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1614-001-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 will not infect machines with language settings that match a defined exclusion list.",
+        "locator": "CISA AA23-165A \u00b7 Table 11, Discovery"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1622",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1622",
+    "claim": "LockBit 3.0 can check heap memory parameters for indications of a debugger and stop the flow of events to the attached debugger in order to hinder dynamic analysis.",
+    "confidence": "medium",
+    "confidenceRationale": "MITRE ATT&CK use statement with vendor reporting; no direct government quote in this snapshot.",
+    "sourceIds": [
+      "mitre-s1202"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1622-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can check heap memory parameters for indications of a debugger and stop the flow of events to the attached debugger in order to hinder dynamic analysis.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1680",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1680",
+    "claim": "LockBit 3.0 can enumerate local drive configuration.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1680-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can enumerate local drive configuration.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1680-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit affiliates will enumerate system information to include hostname, host configuration, domain information, local drive configuration, remote shares, and mounted external storage devices.",
+        "locator": "CISA AA23-165A \u00b7 Table 11, Discovery"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1685",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1685",
+    "claim": "LockBit 3.0 can disable security tools to evade detection including Windows Defender.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1685-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can disable security tools to evade detection including Windows Defender.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1685-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 affiliates use Backstab, Defender Control, GMER, PCHunter, PowerTool, Process Hacker or TDSSKiller to disable EDR processes and services.",
+        "locator": "CISA AA23-165A \u00b7 Table 9, Defense Evasion",
+        "citedAs": "T1562.001"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1685-005",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1685.005",
+    "claim": "LockBit 3.0 can delete log files on targeted systems.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-165a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1685-005-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can delete log files on targeted systems.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1685-005-cisa-aa23-165a",
+        "sourceId": "cisa-aa23-165a",
+        "kind": "direct",
+        "quote": "LockBit executable clears the Windows Event Logs files.",
+        "locator": "CISA AA23-165A \u00b7 Table 9, Defense Evasion",
+        "citedAs": "T1070.001"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-3.0-t1688",
+    "snapshotId": "lockbit-3.0",
+    "techniqueId": "T1688",
+    "claim": "LockBit 3.0 can reboot the infected host into Safe Mode.",
+    "confidence": "high",
+    "confidenceRationale": "Direct use statement in MITRE ATT&CK with a cited government advisory.",
+    "sourceIds": [
+      "mitre-s1202",
+      "cisa-aa23-075a"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-3.0-t1688-mitre",
+        "sourceId": "mitre-s1202",
+        "kind": "mapping",
+        "quote": "LockBit 3.0 can reboot the infected host into Safe Mode.",
+        "locator": "MITRE ATT&CK S1202 \u00b7 technique use"
+      },
+      {
+        "id": "ev-lockbit-3.0-t1688-cisa-aa23-075a",
+        "sourceId": "cisa-aa23-075a",
+        "kind": "direct",
+        "quote": "LockBit 3.0 has a Safe Mode feature to circumvent endpoint antivirus and detection.",
+        "locator": "CISA AA23-075A \u00b7 Safe Mode Launch Commands"
+      }
+    ]
+  }
+]
