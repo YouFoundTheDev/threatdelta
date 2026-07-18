@@ -1,0 +1,82 @@
+[
+  {
+    "id": "wmi-shadow-copy",
+    "title": "WMI shadow-copy deletion: capability vs observed command",
+    "nature": "capability",
+    "techniqueIds": ["T1047"],
+    "snapshotIds": ["lockbit-2.0"],
+    "claims": [
+      {
+        "sourceId": "mitre-s1199",
+        "snapshotId": "lockbit-2.0",
+        "techniqueId": "T1047",
+        "text": "LockBit 2.0 can use wmic.exe to delete volume shadow copies.",
+        "locator": "ATT&CK S1199 · T1047 use statement"
+      },
+      {
+        "sourceId": "fbi-lockbit-2-flash",
+        "snapshotId": "lockbit-2.0",
+        "techniqueId": "T1047",
+        "text": "cmd.exe /c wmic SHADOWCOPY /nointeractive — the FBI's recorded description is \"This command has an invalid syntax and errors out.\"",
+        "locator": "FBI Flash CU-000162-MW · Command Line Activity"
+      }
+    ],
+    "interpretation": "A capability mapping from vendor analysis and a single field-observed command can both be true. The observed command failed in that sample; do not assume every wmic shadow-copy deletion attempt succeeds.",
+    "analystAction": "Validate the command variant in the environment and keep alternative recovery-inhibition paths (vssadmin, bcdedit, PowerShell) in scope.",
+    "status": "unresolved"
+  },
+  {
+    "id": "log-deletion-mapping",
+    "title": "Log destruction mapped two ways",
+    "nature": "taxonomy",
+    "techniqueIds": ["T1485", "T1685.005"],
+    "snapshotIds": ["lockbit-3.0"],
+    "claims": [
+      {
+        "sourceId": "cisa-aa23-075a",
+        "snapshotId": "lockbit-3.0",
+        "techniqueId": "T1485",
+        "citedAs": "T1485",
+        "text": "Data Destruction — LockBit 3.0 deletes log files and empties the recycle bin.",
+        "locator": "CISA AA23-075A · Table 3, Impact"
+      },
+      {
+        "sourceId": "cisa-aa23-165a",
+        "snapshotId": "lockbit-3.0",
+        "techniqueId": "T1685.005",
+        "citedAs": "T1070.001",
+        "text": "Indicator Removal: Clear Windows Event Logs — LockBit executable clears the Windows Event Logs files.",
+        "locator": "CISA AA23-165A · Table 9, Defense Evasion"
+      }
+    ],
+    "interpretation": "The statements can describe different artifacts: Windows Event Logs versus general log files and the recycle bin. ATT&CK v18 also renumbered T1070.001 as T1685.005, so the source IDs are not interchangeable.",
+    "analystAction": "Write separate detections for event log clearing, log-file deletion and recycle-bin destruction. Do not deduplicate them by a single TTP label.",
+    "status": "scope-dependent"
+  },
+  {
+    "id": "safe-mode-source-silence",
+    "title": "Safe Mode: documented in March, absent from the June tables",
+    "nature": "coverage",
+    "techniqueIds": ["T1688"],
+    "snapshotIds": ["lockbit-3.0"],
+    "claims": [
+      {
+        "sourceId": "cisa-aa23-075a",
+        "snapshotId": "lockbit-3.0",
+        "techniqueId": "T1688",
+        "text": "LockBit 3.0 has a Safe Mode feature to circumvent endpoint antivirus and detection.",
+        "locator": "CISA AA23-075A · Safe Mode Launch Commands"
+      },
+      {
+        "sourceId": "cisa-aa23-165a",
+        "snapshotId": "lockbit-3.0",
+        "techniqueId": "T1688",
+        "text": "Not listed in the June 2023 advisory's ATT&CK tables 5–16.",
+        "locator": "CISA AA23-165A · source silence"
+      }
+    ],
+    "interpretation": "This is a coverage difference, not a contradiction. The June advisory is broader and not exhaustive; the March advisory contains build-specific command-line detail. Absence from one table is not evidence the behaviour was removed.",
+    "analystAction": "Keep the Safe Mode hypothesis active and treat the March advisory as the stronger source for this specific capability.",
+    "status": "open"
+  }
+]
