@@ -1,0 +1,136 @@
+[
+  {
+    "id": "safe-mode-reboot",
+    "title": "Safe Mode reboot staging",
+    "question": "Did a host stage a Safe Mode reboot shortly before security tooling stopped reporting?",
+    "techniqueIds": ["T1688", "T1490"],
+    "summary": "LockBit 3.0 can reboot a host into Safe Mode with networking to evade endpoint controls, then continue encryption or recovery inhibition.",
+    "rationale": "This is a documentation delta for 3.0, the public Sigma catalogue has no T1688 rule, and the behaviour is unusually high-signal when correlated with a security-tool gap.",
+    "requiredLogs": [
+      { "source": "Windows System", "events": "EID 1074, 1076, 6005, 6009", "why": "Reboot intent, shutdown reason, and boot mode transitions." },
+      { "source": "EDR process telemetry", "events": "bcdedit, bootcfg, service and driver changes", "why": "Captures the command that sets safeboot and any staged security-service changes." },
+      { "source": "Windows Registry", "events": "SafeBoot keys, service Start values", "why": "Safe Mode can be used to load or suppress services." },
+      { "source": "Security monitoring health", "events": "Agent heartbeat and event forwarding gaps", "why": "The reboot is most meaningful when telemetry disappears or thins out afterwards." }
+    ],
+    "steps": [
+      "Search for bcdedit or bootcfg command lines containing safeboot, safeboot:network, or deletevalue safeboot.",
+      "Pull hosts with a boot transition inside the same 30-minute window and compare their security-agent heartbeat before and after.",
+      "Review service and driver starts that occur after the reboot, especially security, backup and recovery services.",
+      "Check for follow-on shadow-copy deletion, recovery disabling, or a burst of file renames after networking returns."
+    ],
+    "falsePositives": [
+      "IT maintenance or recovery work that intentionally boots into Safe Mode.",
+      "Kiosk, lab or troubleshooting hosts with documented Safe Mode workflows.",
+      "Boot configuration changes from imaging or endpoint-management tooling."
+    ],
+    "sourceIds": ["cisa-aa23-075a", "mitre-s1202", "sigma-hq"]
+  },
+  {
+    "id": "credential-led-psexec",
+    "title": "Credential-led SMB fan-out",
+    "question": "Is a compromised local account being used with PsExec or admin shares to create services across hosts?",
+    "techniqueIds": ["T1078.003", "T1021.002", "T1569.002", "T1543.003"],
+    "summary": "LockBit 3.0 reporting adds local-account abuse to an existing SMB/PsExec pattern, with service creation as a lateral execution bridge.",
+    "rationale": "Four related techniques sit on the lateral-movement path, public rules only partially cover them, and the pattern can be tested with identity plus endpoint telemetry.",
+    "requiredLogs": [
+      { "source": "Windows Security", "events": "4624, 4625, 4648, 4688, 5140, 5145", "why": "Logon type, explicit credential use, process creation and share access." },
+      { "source": "Windows System", "events": "EID 7045", "why": "Service installation, including PSEXESVC and renamed service binaries." },
+      { "source": "Sysmon", "events": "EID 1, 3, 13", "why": "Process lineage, SMB connections, and service registry changes." },
+      { "source": "Identity / VPN logs", "events": "Authentication source, device, and impossible-travel signals", "why": "Separates a compromised local account from approved admin activity." }
+    ],
+    "steps": [
+      "Baseline which accounts normally authenticate with type 3 or type 10 logons to servers and where those logons originate.",
+      "Find 7045 service installs whose image path is outside standard software deployment paths, then pivot to the creating process and account.",
+      "Correlate 4648 explicit-credential events with SMB sessions to multiple hosts in a short window.",
+      "Check for PSEXESVC or renamed service binaries, then review the service account's activity before and after installation.",
+      "Validate whether the same account appears in remote share access without a matching helpdesk or change record."
+    ],
+    "falsePositives": [
+      "Legitimate PsExec use by administrators, backup software or vulnerability scanners.",
+      "Configuration-management tools that install temporary services.",
+      "Penetration tests and red-team activity in approved windows."
+    ],
+    "sourceIds": ["cisa-aa23-075a", "cisa-aa23-165a", "mitre-s1202", "sigma-hq"]
+  },
+  {
+    "id": "password-gated-payload",
+    "title": "Password-gated payload and mutex reuse",
+    "question": "Are we seeing high-entropy executables launched with a 32-character argument, followed by a one-instance mutex check?",
+    "techniqueIds": ["T1480", "T1480.002", "T1027.013"],
+    "summary": "LockBit 3.0 can require a password to decrypt its main component and can use a machine-GUID-derived mutex to prevent duplicate execution.",
+    "rationale": "The password gate and encrypted payload are new to the 3.0 mapping, while the mutex is a sub-technique refinement of a shared parent. The public catalogue has no direct coverage.",
+    "requiredLogs": [
+      { "source": "EDR process telemetry", "events": "Command line, image hash, signer, parent process", "why": "A long password-like argument and unsigned high-entropy image are the starting pivots." },
+      { "source": "Windows process events", "events": "Sysmon EID 1 / Security 4688", "why": "Preserves command-line context where EDR is unavailable." },
+      { "source": "EDR kernel telemetry", "events": "Mutex creation, named objects, memory protection changes", "why": "Mutex names are build-specific but useful within a campaign cluster." },
+      { "source": "File and AV telemetry", "events": "New executable writes, entropy, signature changes", "why": "Supports the encrypted/packed payload hypothesis." }
+    ],
+    "steps": [
+      "Search process creation for executables launched with a single 32-character argument and no obvious vendor context.",
+      "Triage the image: signature, entropy, age, path, parent process, and whether it spawns cmd.exe or modifies recovery settings.",
+      "Hunt mutex names derived from a machine GUID or a campaign-specific prefix, then cluster hosts by mutex and image hash.",
+      "Look for repeated execution attempts on the same host that stop after the first instance, consistent with a mutex guardrail.",
+      "Check whether the binary decrypts or drops a second component before encryption activity begins."
+    ],
+    "falsePositives": [
+      "Commercial software with license keys passed as 32-character arguments.",
+      "Single-instance applications that intentionally use mutexes.",
+      "Password managers and installer wrappers with opaque command lines."
+    ],
+    "sourceIds": ["cisa-aa23-075a", "sentinelone-lockbit3", "mitre-s1202"]
+  },
+  {
+    "id": "winlogon-autologon",
+    "title": "Winlogon autologon persistence",
+    "question": "Did a host enable automatic logon through Winlogon around the time of suspicious service or account activity?",
+    "techniqueIds": ["T1547.004", "T1078.003"],
+    "summary": "LockBit 3.0 can enable automatic logon via Winlogon registry values, supplementing the valid-account and service persistence already seen in 2.0.",
+    "rationale": "The sub-technique is new in the 3.0 mapping, is backed by a specific March 2023 artefact, and has two public rules that are easy to validate against registry telemetry.",
+    "requiredLogs": [
+      { "source": "Windows Registry", "events": "Sysmon EID 13, Winlogon AutoAdminLogon and DefaultPassword values", "why": "Direct evidence of automatic logon configuration." },
+      { "source": "Windows Security", "events": "4624 logon type 2/3/10, 4672 special privileges", "why": "Shows whether the configured account is actually being used." },
+      { "source": "Winlogon operational log", "events": "Logon and profile events", "why": "Distinguishes interactive logon from service or network activity." },
+      { "source": "EDR / identity", "events": "Account changes and endpoint ownership", "why": "Checks whether the account and host combination is expected." }
+    ],
+    "steps": [
+      "Search registry telemetry for AutoAdminLogon set to 1 and DefaultPassword or DefaultUserName changes.",
+      "Identify the account and host, then compare against asset ownership and approved unattended-logon use.",
+      "Review logons by that account around the registry write and look for lateral movement or privileged group changes.",
+      "Check for related Winlogon Notify or Shell userinit changes that could load attacker code at logon.",
+      "If the host is a kiosk or shared workstation, confirm the configuration against the approved build."
+    ],
+    "falsePositives": [
+      "Kiosks, lab machines and operational-technology consoles with documented autologon.",
+      "Imaging or provisioning tools that configure unattended logon.",
+      "Legacy applications requiring a fixed service account logon."
+    ],
+    "sourceIds": ["cisa-aa23-075a", "mitre-s1202", "sigma-hq"]
+  },
+  {
+    "id": "log-destruction",
+    "title": "Event log destruction vs clearing",
+    "question": "Did a host clear Windows Event Logs, delete log files, or empty the recycle bin before encryption?",
+    "techniqueIds": ["T1685.005", "T1485"],
+    "summary": "Public advisories describe both Windows Event Log clearing and broader log-file or recycle-bin destruction, but map them to different ATT&CK techniques.",
+    "rationale": "This is a documented mapping tension across the March and June 2023 advisories. The behaviour is shared across versions, but the hunt is still valuable because the public catalogue does not cover event log clearing directly.",
+    "requiredLogs": [
+      { "source": "Windows Security", "events": "EID 1102", "why": "The security audit log was cleared." },
+      { "source": "Windows System", "events": "EID 104", "why": "A system or application log was cleared." },
+      { "source": "EDR process telemetry", "events": "wevtutil, PowerShell Clear-EventLog, fsutil, cipher, del", "why": "Captures the tool and command line used." },
+      { "source": "PowerShell", "events": "EID 4104 script block", "why": "Recovers intent when native event log evidence is missing." }
+    ],
+    "steps": [
+      "Find 1102 and 104 events and identify the process and account responsible.",
+      "Search for wevtutil cl, Clear-EventLog, fsutil file setZeroData and recycle-bin deletion around the same time.",
+      "Check whether the clearing host shows a gap in forwarded telemetry or a subsequent recovery-inhibition command.",
+      "Cross-reference the timing with encryption, service stop, or Safe Mode reboot events.",
+      "Treat event log clearing and log-file destruction as separate detections; do not collapse them into one ATT&CK ID."
+    ],
+    "falsePositives": [
+      "Authorized log rotation, archive and troubleshooting procedures.",
+      "Security tooling that clears or recreates logs during installation.",
+      "Hosts rebuilt from images or wiped during decommissioning."
+    ],
+    "sourceIds": ["cisa-aa23-075a", "cisa-aa23-165a", "fbi-lockbit-2-flash"]
+  }
+]
