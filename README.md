@@ -140,7 +140,7 @@ The last two vendor sources are background for MITRE mappings cited in the datas
 
 ## Run locally
 
-Requires Node.js 20.9+.
+Requires Node.js 24.x (see `.nvmrc`).
 
 ```bash
 npm install
