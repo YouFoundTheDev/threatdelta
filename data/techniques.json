@@ -112,6 +112,36 @@
     "subtechniqueOf": "T1053"
   },
   {
+    "id": "T1055",
+    "name": "Process Injection",
+    "tactics": [
+      "privilege-escalation",
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation",
+      "Stealth"
+    ],
+    "description": "Adversaries may inject code into processes in order to evade process-based defenses as well as possibly elevate privileges.",
+    "url": "https://attack.mitre.org/techniques/T1055/",
+    "subtechniqueOf": null
+  },
+  {
+    "id": "T1055.012",
+    "name": "Process Hollowing",
+    "tactics": [
+      "privilege-escalation",
+      "stealth"
+    ],
+    "tacticLabels": [
+      "Privilege Escalation",
+      "Stealth"
+    ],
+    "description": "Adversaries may inject malicious code into suspended and hollowed processes in order to evade process-based defenses.",
+    "url": "https://attack.mitre.org/techniques/T1055/012/",
+    "subtechniqueOf": "T1055"
+  },
+  {
     "id": "T1057",
     "name": "Process Discovery",
     "tactics": [

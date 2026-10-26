@@ -4,6 +4,7 @@ import { PageHeader, Badge } from "@/components/ui";
 import {
   caseFile,
   comparison,
+  currentCoverage,
   scoredHunts,
   targetCoverage,
 } from "@/lib/analysis";
@@ -24,7 +25,7 @@ export default function ReportsPage() {
             Build a <em className="italic text-rust">report</em>
           </>
         }
-        deck="Export the selected analysis as an analyst-readable Markdown brief or a structured JSON payload. Every option below changes the actual output."
+        deck="Take the analysis with you: Markdown for a ticket, JSON for tooling. Every switch changes the actual file."
         actions={
           <>
             <Badge tone="neutral">Markdown</Badge>
@@ -39,6 +40,7 @@ export default function ReportsPage() {
           dataset={dataset}
           comparison={comparison}
           coverage={targetCoverage}
+          currentCoverage={currentCoverage}
           hunts={scoredHunts}
           observations={observations}
           techniques={techniques}

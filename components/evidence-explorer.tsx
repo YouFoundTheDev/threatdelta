@@ -93,7 +93,7 @@ function EvidenceDetail({
 
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
           <p className="text-[10px] leading-4 text-muted">
-            {observation.synthetic ? "Synthetic material — labelled." : "Public-source evidence. No synthetic telemetry."}
+            {observation.synthetic ? "Synthetic material — labelled." : "Public source. No synthetic telemetry."}
           </p>
           <a
             href={technique.url}
@@ -145,6 +145,12 @@ export function EvidenceExplorer({
   }, [techniques]);
 
   const filtered = useMemo(() => {
+    const snapshotOrder = new Map([
+      [caseFile.snapshots[1]?.id, 0],
+      [caseFile.currentReporting.snapshotId, 1],
+      [caseFile.snapshots[0]?.id, 2],
+    ]);
+
     return observations
       .filter((observation) => {
         const technique = techniqueById.get(observation.techniqueId);
@@ -169,14 +175,14 @@ export function EvidenceExplorer({
         );
       })
       .sort((a, b) => {
-        const snapshotOrder = a.snapshotId === caseFile.snapshots[1]?.id ? -1 : 1;
-        const otherOrder = b.snapshotId === caseFile.snapshots[1]?.id ? -1 : 1;
-        if (snapshotOrder !== otherOrder) return snapshotOrder - otherOrder;
+        const aOrder = snapshotOrder.get(a.snapshotId) ?? 99;
+        const bOrder = snapshotOrder.get(b.snapshotId) ?? 99;
+        if (aOrder !== bOrder) return aOrder - bOrder;
         const aTech = techniqueById.get(a.techniqueId);
         const bTech = techniqueById.get(b.techniqueId);
         return aTech && bTech ? compareTechniques(aTech, bTech) : 0;
       });
-  }, [observations, techniqueById, snapshot, confidence, tactic, sourceId, query, sourceById, caseFile.snapshots]);
+  }, [observations, techniqueById, snapshot, confidence, tactic, sourceId, query, sourceById, caseFile.snapshots, caseFile.currentReporting.snapshotId]);
 
   const selected = filtered.find((observation) => observation.id === selectedId) ?? filtered[0];
   const selectedTechnique = selected ? techniqueById.get(selected.techniqueId) : undefined;
@@ -261,7 +267,7 @@ export function EvidenceExplorer({
           <p className="font-mono text-[9px] uppercase tracking-[0.08em] text-muted">
             {filtered.length} of {observations.length} findings
           </p>
-          <p className="text-[10px] text-muted">Quotes are public source text. Derived ATT&CK mappings are labelled as mapping evidence.</p>
+          <p className="text-[10px] text-muted">Quotes come from the sources. Analyst mappings are marked.</p>
         </div>
       </Panel>
 

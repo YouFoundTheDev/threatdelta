@@ -68,6 +68,19 @@ export interface Snapshot {
   limitations: string;
 }
 
+export interface CurrentReporting {
+  snapshotId: string;
+  headline: string;
+  deck: string;
+  caveat: string;
+  activity: Array<{
+    label: string;
+    value: string;
+    sourceId: string;
+    note: string;
+  }>;
+}
+
 export interface CaseFile {
   id: string;
   title: string;
@@ -82,6 +95,7 @@ export interface CaseFile {
   scope: string;
   universeNote: string;
   snapshots: Snapshot[];
+  currentReporting: CurrentReporting;
   caveats: string[];
 }
 
@@ -256,6 +270,7 @@ export interface ReportInput {
   sources: Source[];
   comparison: Comparison;
   coverage: CoverageResult;
+  currentCoverage: CoverageResult;
   hunts: ScoredHunt[];
   observations: Observation[];
   techniques: Technique[];

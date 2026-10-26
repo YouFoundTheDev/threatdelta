@@ -2,6 +2,24 @@
 
 All notable changes to ThreatDelta are recorded here. The project is a case-study workbench, not a production CTI platform.
 
+## [0.1.2] — 2026-10-26
+
+### Added
+
+- A separate 2026 vendor snapshot for LockBit 5.0, with 8 technique observations from Acronis Threat Research Unit and AhnLab ASEC.
+- 2026 activity context from Check Point Research (163 claimed victims in Q1 2026) and Bitdefender (112 in December 2025).
+- A `/2026` reporting page with build findings, coverage, source links and a comparison against the LockBit 3.0 mapping.
+- 2026 snapshot filtering on the detection page and a 2026 section in Markdown/JSON exports.
+- Four new vendor sources, including Acronis, AhnLab, Check Point and Bitdefender.
+- Tests for the 8-technique vendor snapshot, its coverage and report output.
+
+### Changed
+
+- Rewrote page copy and panel labels to be shorter and more direct.
+- Added a 2026 snapshot link to the dashboard, navigation and diff page.
+- Updated the README, methodology, evidence explorer and reports for the new snapshot.
+- Bumped the test/evidence footprint to 68 findings and 13 sources while keeping the historical 2.0→3.0 diff at 26/34 techniques.
+
 ## [0.1.1] — 2026-10-26
 
 ### Changed

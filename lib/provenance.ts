@@ -163,6 +163,21 @@ export function validateDataset(data: DatasetInput): ValidationIssue[] {
     }
   }
 
+  const currentSnapshotId = data.caseFile.currentReporting?.snapshotId;
+  if (!currentSnapshotId || !snapshotIds.has(currentSnapshotId)) {
+    issues.push({ level: "error", message: "The 2026 reporting snapshot is missing or unknown" });
+  } else if (!data.observations.some((observation) => observation.snapshotId === currentSnapshotId)) {
+    issues.push({ level: "error", message: "The 2026 reporting snapshot has no observations" });
+  }
+  for (const activity of data.caseFile.currentReporting?.activity ?? []) {
+    if (!sourceIds.has(activity.sourceId)) {
+      issues.push({
+        level: "error",
+        message: `2026 activity "${activity.label}" references missing source ${activity.sourceId}`,
+      });
+    }
+  }
+
   for (const observation of data.observations) {
     const prefix = `${observation.snapshotId}/${observation.techniqueId}`;
 

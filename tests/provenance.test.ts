@@ -46,6 +46,9 @@ describe("evidence provenance", () => {
     expect(dataset.attack.software.S1199.techniqueCount).toBe(26);
     expect(dataset.attack.software.S1202.techniqueCount).toBe(34);
     expect(dataset.sigma.ruleCount).toBe(sigmaRules.length);
+    expect(caseFile.snapshots).toHaveLength(3);
+    expect(observations.filter((observation) => observation.snapshotId === "lockbit-5.0-2026")).toHaveLength(8);
+    expect(sources).toHaveLength(13);
   });
 
   it("pins every Sigma rule to the verified commit and records verification dates", () => {

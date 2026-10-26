@@ -2,11 +2,11 @@
   "id": "lockbit-lineage",
   "title": "LockBit, 2.0 → 3.0",
   "eyebrow": "Case 01 · Ransomware lineage",
-  "deck": "A documentation diff of one ransomware-as-a-service lineage, built from 2022–2023 public reporting and mapped against current MITRE ATT&CK v20.0.",
+  "deck": "LockBit’s paper trail: the 2022 FBI flash, the 2023 CISA advisories, and a 2026 vendor snapshot. Historical reporting, mapped to ATT&CK v20.0.",
   "asOf": "2023-06-14",
   "attackVersion": "ATT&CK v20.0",
-  "scope": "Historical LockBit reporting from February 2022 through June 2023, mapped to LockBit 2.0 (S1199) and LockBit 3.0 (S1202) in MITRE ATT&CK v20.0, with direct evidence from FBI and CISA reporting.",
-  "universeNote": "The comparison universe is deliberately narrow: the 26 and 34 techniques mapped to the two ATT&CK v20.0 software entries. Advisory-only techniques are out of the diff counts. The historical reporting period ends on 14 June 2023.",
+  "scope": "The main case is historical LockBit reporting from February 2022 to June 2023, mapped to ATT&CK v20.0. The 2026 LockBit 5.0 snapshot is vendor reporting and sits outside the diff counts.",
+  "universeNote": "The diff only uses the 26 and 34 techniques ATT&CK v20.0 maps to LockBit 2.0 and 3.0. Advisory-only techniques do not count. The 2026 vendor snapshot stays separate.",
   "snapshots": [
     {
       "id": "lockbit-2.0",
@@ -35,16 +35,52 @@
       ],
       "summary": "The 2023 advisories document a more modular build: password-gated payloads, Safe Mode reboot, mutex checks, PsExec spreading and broader defence impairment.",
       "limitations": "The June advisory covers LockBit affiliates broadly, not just 3.0. The March advisory is the stronger source for build-specific behaviour."
+    },
+    {
+      "id": "lockbit-5.0-2026",
+      "label": "LockBit 5.0 (2026 vendor)",
+      "version": "LockBit 5.0 / ChuongDong",
+      "releasedAt": "2026-02-12",
+      "period": "Vendor reporting · Jan–Feb 2026 · verified 26 Oct 2026",
+      "sourceIds": [
+        "acronis-lockbit5-2026",
+        "ahnlab-lockbit5-2026",
+        "checkpoint-q1-2026",
+        "bitdefender-jan-2026"
+      ],
+      "summary": "Acronis and AhnLab describe a multi-platform 5.0 build with packing, process hollowing, ETW patching, log clearing and faster encryption. Check Point and Bitdefender track the 2025–2026 victim comeback.",
+      "limitations": "Vendor research, not an official advisory or a complete ATT&CK mapping. The 2026 activity is separate from the 2022–2023 historical diff."
     }
   ],
   "caveats": [
-    "The intelligence period is February 2022 – June 2023. ATT&CK v20.0 is a current mapping layer, not evidence of activity in 2026.",
-    "Newly documented is not the same as newly adopted. A technique can appear in a later public report because reporting improved, because a new source was cited, or because the mapping was refined.",
-    "A missing public Sigma rule is not evidence that an organisation has no detection. The catalogue is small and does not represent any particular telemetry estate.",
-    "The diff compares ATT&CK software mappings, not incident prevalence. Counts describe documentation, not adversary frequency."
+    "The main diff is historical: Feb 2022 – Jun 2023. ATT&CK v20.0 is the map we use today, not a claim about 2026 activity.",
+    "The 2026 snapshot is vendor research, not an official advisory. It does not re-document the whole intrusion chain.",
+    "A new line in a later report can mean better reporting, not new behaviour.",
+    "A missing rule here only means it is missing from this catalogue, not from your detection stack.",
+    "These counts are about documentation. They are not incident frequency."
   ],
   "historicalPeriod": "February 2022 – June 2023",
   "attackReleaseDate": "2026-10-13",
   "verifiedAt": "2026-10-26",
-  "attackSourceId": "mitre-attack-release"
+  "attackSourceId": "mitre-attack-release",
+  "currentReporting": {
+    "snapshotId": "lockbit-5.0-2026",
+    "headline": "LockBit 5.0, as vendors saw it",
+    "deck": "LockBit came back in 2025 and kept showing up in 2026. Acronis and AhnLab pulled apart the 5.0 build; Check Point and Bitdefender tracked the victims. This is vendor reporting, not an official advisory.",
+    "caveat": "Vendor research only. It is a build analysis plus activity context, not a full ATT&CK mapping. Keep it separate from the 2022–2023 diff.",
+    "activity": [
+      {
+        "label": "Victims claimed in Q1 2026",
+        "value": "163",
+        "sourceId": "checkpoint-q1-2026",
+        "note": "4th place globally · +106% vs Q4 2025"
+      },
+      {
+        "label": "Victims claimed in Dec 2025",
+        "value": "112",
+        "sourceId": "bitdefender-jan-2026",
+        "note": "Back in the top 10 after a quiet 2025"
+      }
+    ]
+  }
 }

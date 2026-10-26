@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { DetectionWorkbench } from "@/components/detection-workbench";
 import { PageHeader, Badge } from "@/components/ui";
-import { baselineCoverage, caseFile, targetCoverage } from "@/lib/analysis";
+import { baselineCoverage, caseFile, currentCoverage, targetCoverage } from "@/lib/analysis";
 import { sigmaRules } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Detection coverage — ThreatDelta" };
 
-export default function DetectionsPage() {
+export default async function DetectionsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ snapshot?: string }>;
+}) {
+  const { snapshot } = await searchParams;
   return (
     <div>
       <PageHeader
@@ -16,21 +21,25 @@ export default function DetectionsPage() {
             Detection <em className="italic text-rust">coverage</em>
           </>
         }
-        deck="Match documented techniques to a small catalogue of real public Sigma rules. The result shows where public logic exists, where it needs interpretation, and where the catalogue is silent."
+        deck="A small set of real public Sigma rules, matched against the techniques in the case. It tells you what is in this catalogue, not what is in your SOC."
         actions={
           <>
             <Badge tone="neutral">{sigmaRules.length} SigmaHQ rules</Badge>
-            <Badge tone="olive">{targetCoverage.summary.covered}/{targetCoverage.summary.total} exact</Badge>
-            <Badge tone="amber">{targetCoverage.summary.broad} parent-tagged</Badge>
+            <Badge tone="ink">{caseFile.snapshots.length} snapshots</Badge>
+            <Badge tone="amber">Catalogue check, not your stack</Badge>
           </>
         }
       />
       <div className="mt-7">
         <DetectionWorkbench
           caseFile={caseFile}
-          baselineCoverage={baselineCoverage}
-          targetCoverage={targetCoverage}
+          coverageBySnapshot={{
+            [caseFile.snapshots[0].id]: baselineCoverage,
+            [caseFile.snapshots[1].id]: targetCoverage,
+            [caseFile.snapshots[2].id]: currentCoverage,
+          }}
           sigmaRules={sigmaRules}
+          initialSnapshotId={snapshot}
         />
       </div>
     </div>

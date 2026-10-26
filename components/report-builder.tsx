@@ -24,7 +24,7 @@ const optionMeta: Array<{ key: keyof ReportOptions; label: string; description: 
   { key: "includeEvidence", label: "Evidence appendix", description: "Every claim, quote, locator and confidence rationale." },
   { key: "includeCoverage", label: "Detection coverage", description: "Technique-by-technique public Sigma match result." },
   { key: "includeHunts", label: "Hunt hypotheses", description: "Hunt briefs with logs, steps, false positives and scores." },
-  { key: "includeConflicts", label: "Claim tensions", description: "Source disagreements and analyst interpretation." },
+  { key: "includeConflicts", label: "Source conflicts", description: "Where sources disagree, and what to do about it." },
   { key: "includeSources", label: "Sources & attribution", description: "Publisher, date, URL and provenance note." },
 ];
 
@@ -33,6 +33,7 @@ export function ReportBuilder({
   dataset,
   comparison,
   coverage,
+  currentCoverage,
   hunts,
   observations,
   techniques,
@@ -43,6 +44,7 @@ export function ReportBuilder({
   dataset: AttackDataset;
   comparison: Comparison;
   coverage: CoverageResult;
+  currentCoverage: CoverageResult;
   hunts: ScoredHunt[];
   observations: Observation[];
   techniques: Technique[];
@@ -60,9 +62,9 @@ export function ReportBuilder({
   const [status, setStatus] = useState<Status>("idle");
 
   const report = useMemo(() => {
-    const input = { caseFile, dataset, comparison, coverage, hunts, observations, techniques, sources, generatedAt };
+    const input = { caseFile, dataset, comparison, coverage, currentCoverage, hunts, observations, techniques, sources, generatedAt };
     return format === "md" ? buildMarkdownReport(input, options) : buildJsonReport(input, options);
-  }, [format, options, caseFile, dataset, comparison, coverage, hunts, observations, techniques, sources, generatedAt]);
+  }, [format, options, caseFile, dataset, comparison, coverage, currentCoverage, hunts, observations, techniques, sources, generatedAt]);
 
   const filename = reportFilename(format, generatedAt);
   const sizeKb = Math.max(1, Math.round(new Blob([report]).size / 1024));
@@ -158,10 +160,10 @@ export function ReportBuilder({
 
         <div className="border-l-2 border-amber/50 bg-amber-soft/35 px-4 py-3">
           <p className="flex items-center gap-1.5 text-[10px] font-medium text-amber">
-            <Info className="size-3.5" /> Export caveat
+            <Info className="size-3.5" /> What is in the file
           </p>
           <p className="mt-1.5 text-[10px] leading-4 text-ink-soft">
-            Method and limitations are always included. The report contains public-source analysis only — no telemetry, customer data or claim of adoption.
+            Method and limits always go in. No telemetry, customer data or adoption claims.
           </p>
         </div>
 
@@ -204,7 +206,7 @@ export function ReportBuilder({
         </div>
 
         <div className="flex flex-col gap-2 border-t border-line px-4 py-3 text-[10px] leading-4 text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>{format === "md" ? "Markdown is UTF-8 and safe to paste into a ticket." : "JSON schemaVersion 1.0; evidence sources are resolved inline."}</span>
+          <span>{format === "md" ? "UTF-8 Markdown. Paste it into a ticket." : "Schema 1.0. Evidence sources are resolved inline."}</span>
           <span className="font-mono uppercase tracking-[0.06em]">ThreatDelta export</span>
         </div>
       </section>

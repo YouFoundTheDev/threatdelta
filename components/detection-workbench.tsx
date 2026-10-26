@@ -52,21 +52,25 @@ function RuleCard({ rule }: { rule: SigmaRule }) {
 
 export function DetectionWorkbench({
   caseFile,
-  baselineCoverage,
-  targetCoverage,
+  coverageBySnapshot,
   sigmaRules,
+  initialSnapshotId,
 }: {
   caseFile: CaseFile;
-  baselineCoverage: CoverageResult;
-  targetCoverage: CoverageResult;
+  coverageBySnapshot: Record<string, CoverageResult>;
   sigmaRules: SigmaRule[];
+  initialSnapshotId?: string;
 }) {
-  const [snapshotId, setSnapshotId] = useState(caseFile.snapshots[1]?.id ?? "");
+  const [snapshotId, setSnapshotId] = useState(
+    caseFile.snapshots.some((snapshot) => snapshot.id === initialSnapshotId)
+      ? initialSnapshotId!
+      : caseFile.snapshots[1]?.id ?? "",
+  );
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   const [view, setView] = useState<"coverage" | "rules">("coverage");
 
-  const coverage = snapshotId === caseFile.snapshots[0]?.id ? baselineCoverage : targetCoverage;
+  const coverage = coverageBySnapshot[snapshotId] ?? coverageBySnapshot[caseFile.snapshots[1]?.id];
 
   const filtered = useMemo(
     () =>
@@ -112,7 +116,7 @@ export function DetectionWorkbench({
 
       <div className="mt-4 flex flex-col gap-3 border-l-2 border-amber/50 bg-amber-soft/35 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-3xl text-[11px] leading-4 text-ink-soft">
-          <span className="font-medium">Coverage is catalogue availability.</span> A missing public rule is not evidence that an organisation lacks detection. Parent-tagged rules are shown for review but are not counted as exact coverage. The table is sorted gaps-first.
+          <span className="font-medium">This is a catalogue check, not your detection stack.</span> If a rule is not here, it does not mean you are blind. Parent-tagged rules are shown for review, not counted as exact coverage. Gaps first.
         </p>
         <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.08em] text-muted">{sigmaRules.length} SigmaHQ rules</span>
       </div>
@@ -208,7 +212,7 @@ export function DetectionWorkbench({
                   </div>
                 ) : (
                   <div>
-                    <p className="text-[11px] leading-4 text-muted">No matching rule in this catalogue.</p>
+                    <p className="text-[11px] leading-4 text-muted">Nothing in this catalogue.</p>
                     {item.related.length > 0 ? (
                       <p className="mt-1 text-[10px] leading-4 text-amber">
                         {item.related.length} sub-technique-only rule{item.related.length === 1 ? "" : "s"} related but not counted.

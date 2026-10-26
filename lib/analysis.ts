@@ -42,6 +42,17 @@ export const targetCoverage = buildCoverage(
   techniques,
 );
 
+export const currentSnapshot =
+  caseFile.snapshots.find((snapshot) => snapshot.id === caseFile.currentReporting.snapshotId) ??
+  caseFile.snapshots[2];
+
+export const currentCoverage = buildCoverage(
+  currentSnapshot.id,
+  observations,
+  sigmaRules,
+  techniques,
+);
+
 export const scoredHunts = scoreHunts(
   hunts,
   comparison,
@@ -123,4 +134,6 @@ export const datasetStats = {
   sigmaRules: sigmaRules.length,
   hunts: scoredHunts.length,
   coverage: targetCoverage.summary,
+  currentTechniques: observations.filter((observation) => observation.snapshotId === currentSnapshot.id).length,
+  currentCoverage: currentCoverage.summary,
 };

@@ -16,13 +16,13 @@ export default function EvidencePage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Case file · provenance"
+        eyebrow="Case file · sources"
         title={
           <>
             Evidence <em className="italic text-rust">explorer</em>
           </>
         }
-        deck="Search every technique claim, public quote and confidence rationale in the case. The ATT&CK mapping is shown separately from the source evidence."
+        deck="Every finding in the case, with the quote and source behind it. Search by technique, source or phrase."
         actions={
           <>
             <Badge tone="neutral">{observations.length} findings</Badge>

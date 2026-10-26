@@ -10,7 +10,7 @@ export default function NotFound() {
         No such <em className="italic text-rust">lead</em>.
       </h1>
       <p className="mt-4 max-w-md text-sm leading-6 text-muted">
-        This page is not part of the workbench. Return to the case dashboard and continue from the documentation delta.
+        That page does not exist. Head back to the dashboard.
       </p>
       <Link
         href="/"

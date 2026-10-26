@@ -28,13 +28,13 @@ export default function MethodPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Transparency · methodology"
+        eyebrow="Method · data notes"
         title={
           <>
             Method & <em className="italic text-rust">sources</em>
           </>
         }
-        deck="What the workbench compares, how confidence and priority are assigned, and where the analysis stops."
+        deck="How the data was checked, what the scores mean, and where this stops being useful."
         actions={
           <>
             <Badge tone="neutral">{caseFile.attackVersion}</Badge>
@@ -148,7 +148,7 @@ export default function MethodPage() {
           </Panel>
 
           <Panel className="px-5 py-5">
-            <SectionLabel>What is not included</SectionLabel>
+            <SectionLabel>What this does not do</SectionLabel>
             <ul className="mt-3 space-y-2">
               {caseFile.caveats.map((caveat) => (
                 <li key={caveat} className="flex gap-2.5 text-[11px] leading-5 text-ink-soft">
@@ -238,12 +238,12 @@ export default function MethodPage() {
           <div className="border border-line bg-surface px-4 py-4">
             <div className="flex items-center gap-2">
               <Database className="size-4 text-muted" />
-              <SectionLabel>Dataset integrity</SectionLabel>
+              <SectionLabel>Data check</SectionLabel>
             </div>
             <div className="mt-3 flex items-center gap-2">
               <CheckCircle2 className="size-4 text-olive" />
               <p className="text-[12px] font-medium text-ink">
-                {errors === 0 ? "No broken references" : `${errors} errors`}
+                {errors === 0 ? "Every source resolves" : `${errors} errors`}
               </p>
             </div>
             <p className="mt-1.5 text-[10px] leading-4 text-muted">
@@ -256,10 +256,10 @@ export default function MethodPage() {
           </div>
 
           <div className="border-l-2 border-rust bg-rust-soft/55 px-4 py-4">
-            <SectionLabel className="text-rust/80">Core caution</SectionLabel>
-            <p className="mt-2 font-display text-[25px] leading-[1.05] tracking-[-0.02em]">Newly documented is not newly adopted.</p>
+            <SectionLabel className="text-rust/80">The short version</SectionLabel>
+            <p className="mt-2 font-display text-[25px] leading-[1.05] tracking-[-0.02em]">A report change is a lead, not proof.</p>
             <p className="mt-2 text-[10px] leading-4 text-ink-soft">
-              Reporting changes are leads for validation. They are not proof that an adversary changed behaviour, and a public-rule gap is not a detection gap in any specific estate.
+              ATT&amp;CK and Sigma moving is evidence that documentation changed. It is not evidence that behaviour changed, and a public-rule gap says nothing about your estate.
             </p>
           </div>
 
@@ -269,7 +269,7 @@ export default function MethodPage() {
               <SectionLabel>SigmaHQ</SectionLabel>
             </div>
             <p className="mt-2 text-[10px] leading-4 text-muted">
-              The catalogue contains metadata from {sigmaRules.length} real public rules, with links to the original YAML pinned to the verified SigmaHQ commit. Rule text remains under the SigmaHQ Detection Rule License 1.1. The catalogue is intentionally small and is not a detection product.
+              These are {sigmaRules.length} real SigmaHQ rules, pinned to the verified commit. Rule text stays under the SigmaHQ Detection Rule License 1.1. This is a catalogue, not a detection product.
             </p>
             <a
               href="https://github.com/SigmaHQ/sigma"

@@ -1,4 +1,5 @@
 import type {
+  CoverageResult,
   CoverageStatus,
   Observation,
   ReportInput,
@@ -29,6 +30,30 @@ function cell(value: string): string {
 
 function sourceFor(sources: Source[], id: string): Source | undefined {
   return sources.find((source) => source.id === id);
+}
+
+function currentObservations(input: ReportInput) {
+  const snapshot = input.caseFile.snapshots.find(
+    (item) => item.id === input.caseFile.currentReporting.snapshotId,
+  );
+  return {
+    snapshot,
+    observations: input.observations.filter((observation) => observation.snapshotId === snapshot?.id),
+  };
+}
+
+function currentSplit(input: ReportInput) {
+  const { observations: current } = currentObservations(input);
+  const baselineIds = new Set(
+    input.observations
+      .filter((observation) => observation.snapshotId === input.comparison.target.id)
+      .map((observation) => observation.techniqueId),
+  );
+  return {
+    current,
+    newObservations: current.filter((observation) => !baselineIds.has(observation.techniqueId)),
+    sharedObservations: current.filter((observation) => baselineIds.has(observation.techniqueId)),
+  };
 }
 
 function tactics(change: TechniqueChange): string {
@@ -132,6 +157,46 @@ export function buildMarkdownReport(input: ReportInput, options: ReportOptions):
     ...changeTable("Shared", comparison.shared, sources),
     ...changeTable("Not re-documented", comparison.notRedocumented, sources),
   ];
+
+  if (caseFile.currentReporting) {
+    const { snapshot: currentSnapshot, observations: current } = currentObservations(input);
+    const split = currentSplit(input);
+    const currentRules = new Map(
+      input.currentCoverage.techniques.map((item) => [item.technique.id, item]),
+    );
+    lines.push(
+      "## 2026 vendor snapshot",
+      "",
+      `> ${caseFile.currentReporting.deck}`,
+      "",
+      `**Scope.** ${caseFile.currentReporting.caveat}`,
+      "",
+      `- Snapshot: ${currentSnapshot?.label ?? caseFile.currentReporting.snapshotId}`,
+      `- Historical diff cut-off: ${caseFile.asOf}`,
+      `- 2026 observations: ${current.length}`,
+      `- New vs the LockBit 3.0 mapping: ${split.newObservations.map((item) => item.techniqueId).join(", ") || "none"}`,
+      "",
+      "### Activity context",
+      "",
+      ...caseFile.currentReporting.activity.map((item) => {
+        const source = sourceFor(sources, item.sourceId);
+        return `- ${item.label}: **${item.value}** — ${item.note}${source ? ` (${source.publisher})` : ""}`;
+      }),
+      "",
+      "### 2026 techniques",
+      "",
+      "| ATT&CK | Technique | New vs 3.0 | Confidence | Coverage |",
+      "| --- | --- | --- | --- | --- |",
+      ...current.map((observation) => {
+        const technique = input.techniques.find((item) => item.id === observation.techniqueId);
+        const coverage = currentRules.get(observation.techniqueId);
+        return `| ${observation.techniqueId} | ${cell(technique?.name ?? observation.techniqueId)} | ${split.newObservations.some((item) => item.id === observation.id) ? "yes" : "no"} | ${confidenceLabels[observation.confidence]} | ${coverage ? statusLabels[coverage.status] : "not checked"} |`;
+      }),
+      "",
+      "_Vendor reporting only. This is not an official advisory and does not re-document the full 3.0 chain._",
+      "",
+    );
+  }
 
   if (options.includeConflicts) {
     lines.push("## Conflicting and unresolved claims", "");
@@ -290,8 +355,18 @@ export function buildJsonReport(input: ReportInput, options: ReportOptions): str
     },
     methodology: {
       confidence: "High = direct primary-source quote; medium = MITRE mapping with vendor reporting; low = weak or inferred support.",
-      coverage: "Exact = direct; parent-tagged = broad; child-only = related but not counted.",
+      coverage: "Exact = direct; parent-tagged = adjacent, not counted; child-only = related, not counted.",
       priority: "Documentation delta (3) + tactic exposure (3) + detection gap (3) + evidence strength (2).",
+    },
+    current: {
+      reporting: caseFile.currentReporting,
+      snapshot:
+        caseFile.snapshots.find(
+          (snapshot) => snapshot.id === caseFile.currentReporting.snapshotId,
+        ) ?? null,
+      coverage: currentCoverageSection(input.currentCoverage),
+      newTechniqueIds: currentSplit(input).newObservations.map((observation) => observation.techniqueId),
+      sharedTechniqueIds: currentSplit(input).sharedObservations.map((observation) => observation.techniqueId),
     },
     limitations: caseFile.caveats,
   };
@@ -335,6 +410,24 @@ export function buildJsonReport(input: ReportInput, options: ReportOptions): str
   if (options.includeSources) payload.sources = sources;
 
   return JSON.stringify(payload, null, 2);
+}
+
+function currentCoverageSection(coverage: CoverageResult) {
+  return {
+    summary: coverage.summary,
+    techniques: coverage.techniques.map((item) => ({
+      techniqueId: item.technique.id,
+      technique: item.technique.name,
+      status: item.status,
+      rules: item.matches.map((match) => ({
+        id: match.rule.id,
+        title: match.rule.title,
+        match: match.match,
+        level: match.rule.level,
+        url: match.rule.sourceUrl,
+      })),
+    })),
+  };
 }
 
 function serializeChange(change: TechniqueChange, includeEvidence: boolean) {

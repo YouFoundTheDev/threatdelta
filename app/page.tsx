@@ -14,6 +14,7 @@ import { TechniqueCell, TacticLine } from "@/components/technique-meta";
 import {
   caseFile,
   comparison,
+  currentCoverage,
   datasetStats,
   recentFindings,
   targetCoverage,
@@ -135,7 +136,7 @@ export default function DashboardPage() {
       </section>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[9px] uppercase tracking-[0.08em] text-muted">
-        <span>{datasetStats.conflicts} claim tensions</span>
+        <span>{datasetStats.conflicts} source conflicts</span>
         <span className="text-line-strong">·</span>
         <span>{datasetStats.hunts} hunt hypotheses</span>
         <span className="text-line-strong">·</span>
@@ -144,13 +145,41 @@ export default function DashboardPage() {
         <span>{datasetStats.sources} sources</span>
       </div>
 
+      <section className="mt-5 grid gap-px border border-line bg-line lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)_auto]">
+        <div className="bg-surface px-4 py-4">
+          <SectionLabel>2026 vendor snapshot</SectionLabel>
+          <h2 className="mt-1 font-display text-[27px] leading-[1.02] tracking-[-0.02em]">{caseFile.currentReporting.headline}</h2>
+          <p className="mt-2 max-w-2xl text-[11px] leading-5 text-muted">{caseFile.currentReporting.deck}</p>
+        </div>
+        <div className="bg-surface px-4 py-4">
+          <div className="grid h-full gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {caseFile.currentReporting.activity.map((item) => (
+              <div key={item.label}>
+                <p className="font-mono text-[8px] uppercase tracking-[0.08em] text-muted">{item.label}</p>
+                <p className="mt-0.5 font-display text-[26px] leading-none tabular">{item.value}</p>
+                <p className="mt-0.5 text-[9px] leading-4 text-muted">{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col justify-between bg-surface px-4 py-4 lg:min-w-[190px]">
+          <div>
+            <p className="font-mono text-[8px] uppercase tracking-[0.08em] text-muted">Vendor snapshot</p>
+            <p className="mt-1 text-[11px] leading-4 text-ink-soft">
+              {datasetStats.currentTechniques} techniques · {currentCoverage.summary.covered} with a public rule
+            </p>
+          </div>
+          <ButtonLink href="/2026" className="mt-3 justify-center">Open 2026 snapshot</ButtonLink>
+        </div>
+      </section>
+
       <div className="mt-8 grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.82fr)]">
         <div className="space-y-6">
           <Panel>
             <div className="flex flex-col gap-3 border-b border-line px-5 py-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <SectionLabel>Documentation delta</SectionLabel>
-                <h2 className="mt-1 font-display text-[30px] leading-none tracking-[-0.02em]">What changed</h2>
+                <h2 className="mt-1 font-display text-[30px] leading-none tracking-[-0.02em]">What 3.0 added</h2>
               </div>
               <TextLink href="/diff">
                 All {datasetStats.addedMappings} added mappings <ArrowRight className="size-3" />
@@ -193,7 +222,7 @@ export default function DashboardPage() {
 
             <div className="flex items-center justify-between border-t border-line bg-paper-deep/30 px-5 py-3">
               <p className="text-[11px] leading-4 text-muted">
-                Newly documented means new to this mapping comparison — not proof of new adoption.
+                New here only means new to this comparison. It is not proof the actor just started.
               </p>
               <Link href="/diff" className="ml-4 shrink-0 text-muted hover:text-rust" aria-label="Open diff">
                 <ArrowRight className="size-4" />
@@ -251,9 +280,9 @@ export default function DashboardPage() {
 
         <aside className="space-y-6">
           <div className="border-l-2 border-rust bg-rust-soft/55 px-5 py-5">
-            <SectionLabel className="text-rust/80">Read this first</SectionLabel>
+            <SectionLabel className="text-rust/80">Start here</SectionLabel>
             <h2 className="mt-2 font-display text-[27px] leading-[1.02] tracking-[-0.02em] text-ink">
-              Documentation is not adoption.
+              Do not overread the delta.
             </h2>
             <ol className="mt-4 space-y-3">
               {caseFile.caveats.map((caveat, index) => (
@@ -303,7 +332,7 @@ export default function DashboardPage() {
             </div>
             <div className="mt-4 flex items-center justify-between border-t border-line pt-3">
               <p className="max-w-[220px] text-[10px] leading-4 text-muted">
-                This is a small public Sigma catalogue, not your detection estate.
+                19 public rules. Not your detection stack.
               </p>
               <Link href="/detections" className="text-muted hover:text-rust" aria-label="Open detection coverage">
                 <ArrowRight className="size-4" />
@@ -315,7 +344,7 @@ export default function DashboardPage() {
             <div className="flex items-end justify-between border-b border-line px-5 py-4">
               <div>
                 <SectionLabel>Disagreement</SectionLabel>
-                <h2 className="mt-1 font-display text-[26px] leading-none tracking-[-0.02em]">Claim tensions</h2>
+                <h2 className="mt-1 font-display text-[26px] leading-none tracking-[-0.02em]">Where sources disagree</h2>
               </div>
               <TriangleAlert className="size-4 text-amber" aria-hidden />
             </div>
@@ -335,7 +364,7 @@ export default function DashboardPage() {
               ))}
             </div>
             <div className="flex items-center justify-between border-t border-line bg-paper-deep/30 px-5 py-3">
-              <p className="text-[10px] leading-4 text-muted">Not every disagreement is a contradiction.</p>
+              <p className="text-[10px] leading-4 text-muted">Two sources can describe the same thing differently.</p>
               <Link href="/diff" className="text-muted hover:text-rust" aria-label="Open conflicts">
                 <ArrowRight className="size-4" />
               </Link>

@@ -10,6 +10,26 @@
     "retrievedAt": "2026-10-26"
   },
   {
+    "id": "unit42-lockbit2",
+    "title": "LockBit 2.0: How This RaaS Operates and How to Protect Against It",
+    "publisher": "Palo Alto Networks Unit 42",
+    "kind": "vendor",
+    "publishedAt": "2022-06-09",
+    "url": "https://unit42.paloaltonetworks.com/lockbit-2-ransomware/",
+    "note": "Vendor analysis cited by MITRE for LockBit 2.0 execution, discovery, persistence and lateral movement. Published 9 Jun 2022; last modified 5 Jun 2024; URL verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
+  },
+  {
+    "id": "sentinelone-lockbit3",
+    "title": "LockBit 3.0 Update: Unpicking the Ransomware's Latest Anti-Analysis and Evasion Techniques",
+    "publisher": "SentinelOne Labs",
+    "kind": "vendor",
+    "publishedAt": "2022-07-21",
+    "url": "https://www.sentinelone.com/labs/lockbit-3-0-update-unpicking-the-ransomwares-latest-anti-analysis-and-evasion-techniques/",
+    "note": "Vendor technical analysis cited by MITRE for debugger evasion, CMSTP abuse and service installation. Published 21 Jul 2022; URL verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
+  },
+  {
     "id": "cisa-aa23-075a",
     "title": "#StopRansomware: LockBit 3.0",
     "publisher": "CISA, FBI, MS-ISAC",
@@ -28,16 +48,6 @@
     "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a",
     "note": "Joint advisory AA23-165A. Broad LockBit affiliate TTP review with ATT&CK tables 5–16. Historical release date verified 26 Oct 2026.",
     "retrievedAt": "2026-10-26"
-  },
-  {
-    "id": "mitre-attack-release",
-    "title": "MITRE ATT&CK v20.0 release",
-    "publisher": "MITRE ATT&CK",
-    "kind": "mitre",
-    "publishedAt": "2026-10-13",
-    "retrievedAt": "2026-10-26",
-    "url": "https://github.com/mitre-attack/attack-stix-data/releases/tag/v20.0",
-    "note": "Official Enterprise ATT&CK STIX release used for the v20.0 technique and software mappings. Dataset SHA-256 81113ba98afa2928f3dcff62022539f7ce30c315c32e14422f11ff95ce534352, verified 26 Oct 2026."
   },
   {
     "id": "mitre-s1199",
@@ -60,24 +70,54 @@
     "note": "Enterprise ATT&CK v20.0 software mapping. Software object last modified 21 Oct 2025; page verified 26 Oct 2026."
   },
   {
-    "id": "sentinelone-lockbit3",
-    "title": "LockBit 3.0 Update: Unpicking the Ransomware's Latest Anti-Analysis and Evasion Techniques",
-    "publisher": "SentinelOne Labs",
+    "id": "ahnlab-lockbit5-2026",
+    "title": "In-Depth Analysis Report on LockBit 5.0: Operation and Countermeasures",
+    "publisher": "AhnLab ASEC",
     "kind": "vendor",
-    "publishedAt": "2022-07-21",
-    "url": "https://www.sentinelone.com/labs/lockbit-3-0-update-unpicking-the-ransomwares-latest-anti-analysis-and-evasion-techniques/",
-    "note": "Vendor technical analysis cited by MITRE for debugger evasion, CMSTP abuse and service installation. Published 21 Jul 2022; URL verified 26 Oct 2026.",
-    "retrievedAt": "2026-10-26"
+    "publishedAt": "2026-01-05",
+    "retrievedAt": "2026-10-26",
+    "url": "https://asec.ahnlab.com/en/91945/",
+    "note": "Technical vendor analysis of the LockBit 5.0 build and encryption routine. Used as 2026 vendor evidence; not an official advisory."
   },
   {
-    "id": "unit42-lockbit2",
-    "title": "LockBit 2.0: How This RaaS Operates and How to Protect Against It",
-    "publisher": "Palo Alto Networks Unit 42",
+    "id": "bitdefender-jan-2026",
+    "title": "Bitdefender Threat Debrief | January 2026",
+    "publisher": "Bitdefender",
     "kind": "vendor",
-    "publishedAt": "2022-06-09",
-    "url": "https://unit42.paloaltonetworks.com/lockbit-2-ransomware/",
-    "note": "Vendor analysis cited by MITRE for LockBit 2.0 execution, discovery, persistence and lateral movement. Published 9 Jun 2022; last modified 5 Jun 2024; URL verified 26 Oct 2026.",
-    "retrievedAt": "2026-10-26"
+    "publishedAt": "2026-01-13",
+    "retrievedAt": "2026-10-26",
+    "url": "https://www.bitdefender.com/en-us/blog/businessinsights/bitdefender-threat-debrief-january-2026",
+    "note": "Vendor threat debrief covering LockBit's return to the top 10 and the LockBit5 variant. Used only for 2026 activity context."
+  },
+  {
+    "id": "acronis-lockbit5-2026",
+    "title": "LockBit strikes with new 5.0 version, targeting Windows, Linux and ESXI systems",
+    "publisher": "Acronis Threat Research Unit",
+    "kind": "vendor",
+    "publishedAt": "2026-02-12",
+    "retrievedAt": "2026-10-26",
+    "url": "https://www.acronis.com/en/tru/posts/lockbit-strikes-with-new-50-version-targeting-windows-linux-and-esxi-systems/",
+    "note": "Technical vendor analysis of the LockBit 5.0 Windows, Linux and ESXi builds. Used as 2026 vendor evidence; not an official advisory."
+  },
+  {
+    "id": "checkpoint-q1-2026",
+    "title": "The State of Ransomware – Q1 2026",
+    "publisher": "Check Point Research",
+    "kind": "vendor",
+    "publishedAt": "2026-05-11",
+    "retrievedAt": "2026-10-26",
+    "url": "https://research.checkpoint.com/2026/the-state-of-ransomware-q1-2026/",
+    "note": "Vendor tracking of leak-site victim volumes. Used only for 2026 activity context, not for technique mapping."
+  },
+  {
+    "id": "mitre-attack-release",
+    "title": "MITRE ATT&CK v20.0 release",
+    "publisher": "MITRE ATT&CK",
+    "kind": "mitre",
+    "publishedAt": "2026-10-13",
+    "retrievedAt": "2026-10-26",
+    "url": "https://github.com/mitre-attack/attack-stix-data/releases/tag/v20.0",
+    "note": "Official Enterprise ATT&CK STIX release used for the v20.0 technique and software mappings. Dataset SHA-256 81113ba98afa2928f3dcff62022539f7ce30c315c32e14422f11ff95ce534352, verified 26 Oct 2026."
   },
   {
     "id": "sigma-hq",

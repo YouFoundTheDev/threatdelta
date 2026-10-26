@@ -11,6 +11,7 @@ import {
   GitCompareArrows,
   LayoutDashboard,
   Menu,
+  Newspaper,
   Search,
   ShieldCheck,
   X,
@@ -30,6 +31,7 @@ function navItems(stats: ShellStats): Array<{ href: string; label: string; icon:
   return [
     { href: "/", label: "Dashboard", icon: LayoutDashboard, note: "Case overview" },
     { href: "/diff", label: "Intelligence diff", icon: GitCompareArrows, note: `${stats.baseline} → ${stats.target} mappings` },
+    { href: "/2026", label: "2026 reporting", icon: Newspaper, note: "Vendor snapshot" },
     { href: "/evidence", label: "Evidence explorer", icon: Search, note: `${stats.findings} findings` },
     { href: "/detections", label: "Detection coverage", icon: ShieldCheck, note: `${stats.rules} public Sigma rules` },
     { href: "/hunts", label: "Hunt planner", icon: Crosshair, note: `${stats.hunts} hypotheses` },
@@ -40,6 +42,7 @@ function navItems(stats: ShellStats): Array<{ href: string; label: string; icon:
 const sectionNames: Record<string, string> = {
   "/": "Dashboard",
   "/diff": "Intelligence diff",
+  "/2026": "2026 reporting",
   "/evidence": "Evidence explorer",
   "/detections": "Detection coverage",
   "/hunts": "Hunt planner",
@@ -166,7 +169,7 @@ export function AppShell({
             <span>Verified {formatDate(verifiedAt)}</span>
           </div>
           <p className="mt-2 text-[10px] leading-4 text-sidebar-muted">
-            Local JSON. Public-source analysis. No telemetry, credentials or live customer data.
+            Local JSON. Public sources only. No telemetry or customer data.
           </p>
           <a
             href={refreshUrl}
@@ -251,7 +254,7 @@ export function AppShell({
             <span className="text-ink">{section}</span>
           </div>
           <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
-            <span>Historical cut-off {formatDate(historicalCutoff)}</span>
+            <span>Historical diff cut-off {formatDate(historicalCutoff)}</span>
             <span className="h-3 w-px bg-line-strong" />
             <span>{attackVersion}</span>
             <span className="hidden h-3 w-px bg-line-strong xl:inline-block" />
@@ -262,7 +265,7 @@ export function AppShell({
         <main className="mx-auto w-full max-w-[1400px] px-4 py-7 sm:px-7 lg:px-9 lg:py-10">{children}</main>
 
         <footer className="mx-auto flex w-full max-w-[1400px] flex-col gap-2 border-t border-line px-4 py-5 font-mono text-[9px] uppercase tracking-[0.1em] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-7 lg:px-9">
-          <span>ThreatDelta · documentation is not adoption</span>
+          <span>ThreatDelta · public sources, local data</span>
           <span>Public sources only · local JSON data</span>
         </footer>
       </div>

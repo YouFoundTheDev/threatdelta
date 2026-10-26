@@ -30,6 +30,7 @@ data/*.json
 - `data/conflicts.json` — side-by-side claims where sources disagree or are silent.
 - `data/sigma-rules.json` — metadata and source links for real public SigmaHQ rules.
 - `data/hunts.json` — analyst hypotheses, log requirements, steps and false positives.
+- `data/case.json` also carries the supplementary 2026 vendor snapshot and activity context.
 - `data/dataset.json` — verified ATT&CK release and SigmaHQ commit manifest.
 - `data/monitoring.json` — ATT&CK/Sigma endpoints, report feeds and known-report URLs used by the refresh pipeline.
 
@@ -54,7 +55,8 @@ The UI receives plain data as props. Client components own only interaction stat
 | Route | Purpose |
 | --- | --- |
 | `/` | Case overview, delta summary, recent findings |
-| `/diff` | Snapshot comparison and claim tensions |
+| `/diff` | Historical snapshot comparison and claim tensions |
+| `/2026` | Separate LockBit 5.0 vendor snapshot and activity context |
 | `/evidence` | Searchable evidence and provenance |
 | `/detections` | Technique-to-Sigma coverage and rule catalogue |
 | `/hunts` | Ranked hunt hypotheses |

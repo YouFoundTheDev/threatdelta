@@ -153,21 +153,21 @@ function ChangeDetail({
         {change.kind === "new" ? (
           <div className="flex gap-2 border border-line bg-paper-deep/40 px-3 py-2.5 text-[11px] leading-4 text-ink-soft">
             <Info className="mt-0.5 size-3.5 shrink-0 text-amber" />
-            No matching baseline observation in the ATT&CK software mapping. This is a documentation delta, not proof of adoption.
+            No baseline entry for this one. That is a gap in the map, not proof it just appeared.
           </div>
         ) : null}
 
         {change.kind === "refined" ? (
           <div className="flex gap-2 border border-amber/25 bg-amber-soft/60 px-3 py-2.5 text-[11px] leading-4 text-ink-soft">
             <GitCompareArrows className="mt-0.5 size-3.5 shrink-0 text-amber" />
-            This sub-technique refines the shared parent {change.baselineObservation?.techniqueId}; it is not counted as a separate new technique.
+            This is a more specific version of {change.baselineObservation?.techniqueId}. It is not counted as a separate new technique.
           </div>
         ) : null}
 
         {change.kind === "not-redocumented" ? (
           <div className="flex gap-2 border border-line bg-paper-deep/40 px-3 py-2.5 text-[11px] leading-4 text-ink-soft">
             <Info className="mt-0.5 size-3.5 shrink-0 text-muted" />
-            Present in 2.0 but absent from the 3.0 mapping. Absence from a later public mapping is not evidence that the technique was removed.
+            It is in 2.0 but not the 3.0 map. Missing from a later map does not mean removed.
           </div>
         ) : null}
 
@@ -184,7 +184,7 @@ function ChangeDetail({
 
         <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
           <p className="text-[10px] leading-4 text-muted">
-            Source count is evidence breadth, not independent corroboration.
+            More sources is not automatically more proof.
           </p>
           <a
             href={change.technique.url}
@@ -328,7 +328,7 @@ export function DiffWorkbench({
           ["Added mappings", comparison.counts.addedMappings, `${comparison.counts.newlyDocumented} new · ${comparison.counts.refinements} refinement`],
           ["Shared", comparison.counts.shared, "in both mappings"],
           ["Not re-documented", comparison.counts.notRedocumented, "not proof of removal"],
-          ["Claim tensions", comparison.counts.conflicts, "source disagreement"],
+          ["Source conflicts", comparison.counts.conflicts, "sources disagree"],
           ["Exact coverage", `${targetCoverage.summary.covered}/${targetCoverage.summary.total}`, `${targetCoverage.summary.broad} parent-tagged`],
         ].map(([label, value, note], index) => (
           <div key={label} className={cn("bg-surface px-4 py-3", index === 4 && "col-span-2 sm:col-span-1")}>
@@ -372,7 +372,7 @@ export function DiffWorkbench({
               <h2 className="mt-1 font-display text-[30px] leading-none tracking-[-0.02em]">Conflicting and unresolved claims</h2>
             </div>
             <p className="max-w-md text-[10px] leading-4 text-muted">
-              Claims are shown side by side, not ranked. Source silence is not contradiction; a mapping difference is not automatically an error.
+              Two claims, side by side. Nothing is ranked here.
             </p>
           </div>
           <ConflictCards conflicts={comparison.conflicts} sources={sources} />
@@ -443,7 +443,7 @@ export function DiffWorkbench({
                 />
                 <div className="mt-3 flex items-center gap-2 px-1 text-[10px] leading-4 text-muted">
                   <ShieldCheck className="size-3.5 shrink-0" />
-                  Coverage is public-rule availability, not organisational detection.
+                  This is what the public rule set has, not what you run.
                 </div>
               </div>
             ) : null}
@@ -453,7 +453,7 @@ export function DiffWorkbench({
 
       <div className="mt-8 flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-2xl text-[11px] leading-5 text-muted">
-          A technique appearing in 3.0 reporting may reflect better documentation, a new source, or a mapping refinement. Treat the delta as a lead for hunting, not as attribution or proof of adoption.
+          A technique showing up in 3.0 may just mean someone wrote it down. Treat the delta as a lead, not attribution.
         </p>
         <div className="flex gap-2">
           <ButtonLink href="/evidence">Inspect evidence</ButtonLink>

@@ -6,7 +6,7 @@ import {
   techniqueAncestors,
 } from "@/lib/attack";
 import { observations, sigmaRules, techniques } from "@/lib/data";
-import { targetCoverage, baselineCoverage, datasetStats } from "@/lib/analysis";
+import { targetCoverage, baselineCoverage, currentCoverage, datasetStats } from "@/lib/analysis";
 
 const index = buildTechniqueIndex(techniques);
 
@@ -45,6 +45,8 @@ describe("ATT&CK matching", () => {
     expect(baselineCoverage.summary).toMatchObject({ total: 26, direct: 8, broad: 1, gap: 17, covered: 8, percent: 31 });
     expect(datasetStats.sigmaRules).toBe(19);
     expect(datasetStats.sigmaRules).toBe(sigmaRules.length);
-    expect(observations).toHaveLength(60);
+    expect(observations).toHaveLength(68);
+    expect(currentCoverage.summary).toMatchObject({ total: 8, direct: 4, broad: 1, gap: 3, covered: 4, percent: 50 });
+    expect(datasetStats.snapshots).toBe(3);
   });
 });

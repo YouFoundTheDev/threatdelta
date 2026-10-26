@@ -1594,5 +1594,173 @@
         "locator": "CISA AA23-075A · Safe Mode Launch Commands"
       }
     ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1027-002",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1027.002",
+    "claim": "LockBit 5.0 packs its Windows build.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from Acronis TRU. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "acronis-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1027-002-acronis",
+        "sourceId": "acronis-lockbit5-2026",
+        "kind": "direct",
+        "quote": "The Windows sample has most defense evasion and anti-analysis techniques applied across all analyzed samples. This includes packing, DLL unhooking, process hollowing, patching Event Tracing for Windows (ETW) functions and clearing all available logs in the system.",
+        "locator": "Acronis TRU · Summary"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1055-012",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1055.012",
+    "claim": "LockBit 5.0 uses process hollowing on Windows.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from Acronis TRU. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "acronis-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1055-012-acronis",
+        "sourceId": "acronis-lockbit5-2026",
+        "kind": "direct",
+        "quote": "This includes packing, DLL unhooking, process hollowing, patching Event Tracing for Windows (ETW) functions and clearing all available logs in the system.",
+        "locator": "Acronis TRU · Summary"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1070-004",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1070.004",
+    "claim": "LockBit 5.0 deletes files from Temp directories before encryption.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from AhnLab ASEC. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "ahnlab-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1070-004-ahnlab",
+        "sourceId": "ahnlab-lockbit5-2026",
+        "kind": "direct",
+        "quote": "Deleting files in the Temp directory is intended to improve encryption speed by removing unnecessary files in the Temp directory, which primarily consists of cache or temporary data, since the encryption targets are mainly the user’s valuable files.",
+        "locator": "AhnLab ASEC · Encrypting"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1486",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1486",
+    "claim": "LockBit 5.0 encrypts files with ChaCha20-Poly1305/XChaCha20 and X25519/Curve25519.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct quotes from Acronis TRU and AhnLab ASEC. Two vendor analyses agree on the encryption scheme; no government advisory.",
+    "sourceIds": [
+      "acronis-lockbit5-2026",
+      "ahnlab-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1486-acronis",
+        "sourceId": "acronis-lockbit5-2026",
+        "kind": "direct",
+        "quote": "All versions have the same ransom note, append a random extension to each encrypted file, and the same encryption routine that involves XChaCha20 and Curve25519.",
+        "locator": "Acronis TRU · Summary"
+      },
+      {
+        "id": "ev-lockbit-5.0-2026-t1486-ahnlab",
+        "sourceId": "ahnlab-lockbit5-2026",
+        "kind": "direct",
+        "quote": "LockBit 5.0 ransomware uses the ChaCha20-Poly1305 algorithm for file encryption and applies X25519 + BLAKE2b for key exchange.",
+        "locator": "AhnLab ASEC · File Encryption"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1489",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1489",
+    "claim": "LockBit 5.0 disables and stops backup and security services before encryption.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from AhnLab ASEC. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "ahnlab-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1489-ahnlab",
+        "sourceId": "ahnlab-lockbit5-2026",
+        "kind": "direct",
+        "quote": "To prevent collisions during the encryption process and to block the operation of backup and security solutions, the automatic execution of core system services is disabled and immediately stopped.",
+        "locator": "AhnLab ASEC · Encrypting"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1490",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1490",
+    "claim": "LockBit 5.0 terminates VSS-related services before encryption to interfere with recovery.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from AhnLab ASEC. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "ahnlab-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1490-ahnlab",
+        "sourceId": "ahnlab-lockbit5-2026",
+        "kind": "direct",
+        "quote": "To prevent recovery, it terminates VSS-related services and applies packing and obfuscation to make static analysis difficult.",
+        "locator": "AhnLab ASEC · Analysis Details"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1685",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1685",
+    "claim": "LockBit 5.0 patches ETW functions to interfere with security telemetry.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from Acronis TRU. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "acronis-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1685-acronis",
+        "sourceId": "acronis-lockbit5-2026",
+        "kind": "direct",
+        "quote": "This includes packing, DLL unhooking, process hollowing, patching Event Tracing for Windows (ETW) functions and clearing all available logs in the system.",
+        "locator": "Acronis TRU · Summary"
+      }
+    ]
+  },
+  {
+    "id": "obs-lockbit-5.0-2026-t1685-005",
+    "snapshotId": "lockbit-5.0-2026",
+    "techniqueId": "T1685.005",
+    "claim": "LockBit 5.0 clears Windows event logs after encryption.",
+    "confidence": "medium",
+    "confidenceRationale": "Direct vendor quote from Acronis TRU. Analyst mapping from a LockBit 5.0 build analysis; no government advisory.",
+    "sourceIds": [
+      "acronis-lockbit5-2026"
+    ],
+    "evidence": [
+      {
+        "id": "ev-lockbit-5.0-2026-t1685-005-acronis",
+        "sourceId": "acronis-lockbit5-2026",
+        "kind": "direct",
+        "quote": "After patching, it also clears all available event logs by passing different service log files to the ‘EvtClearLog’ function.",
+        "locator": "Acronis TRU · Post-encryption execution"
+      }
+    ]
   }
 ]

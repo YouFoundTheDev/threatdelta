@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   baselineCoverage,
   comparison,
+  currentCoverage,
   datasetStats,
   targetCoverage,
 } from "@/lib/analysis";
@@ -22,6 +23,7 @@ const input = {
   sources,
   comparison,
   coverage: targetCoverage,
+  currentCoverage,
   hunts: scoredHunts,
   observations,
   techniques,
@@ -47,6 +49,8 @@ describe("report exports", () => {
     expect(markdown).toContain("Historical period: February 2022 – June 2023");
     expect(markdown).toContain("ATT&CK mapping: ATT&CK v20.0 (released 2026-10-13)");
     expect(markdown).toContain("Data verified: 2026-10-26");
+    expect(markdown).toContain("## 2026 vendor snapshot");
+    expect(markdown).toContain("T1055.012");
     expect(markdown).toContain("Detection coverage");
     expect(markdown).toContain("Credential-led SMB fan-out");
     expect(markdown).toContain("https://www.ic3.gov/CSA/2022/220204.pdf");
@@ -94,9 +98,11 @@ describe("report exports", () => {
     expect(json.coverage.summary.covered).toBe(11);
     expect(json.coverage.summary.covered).toBe(datasetStats.coverage.covered);
     expect(json.coverage.summary.broad).toBe(1);
-    expect(json.sources).toHaveLength(9);
+    expect(json.sources).toHaveLength(13);
     expect(json.sources).toHaveLength(sources.length);
-    expect(json.evidence).toHaveLength(60);
+    expect(json.evidence).toHaveLength(68);
+    expect(json.current.coverage.summary).toMatchObject({ total: 8, direct: 4, broad: 1, gap: 3 });
+    expect(json.current.newTechniqueIds).toEqual(["T1055.012"]);
     expect(json.hunts).toHaveLength(5);
     expect(json.comparison.conflicts).toHaveLength(3);
   });

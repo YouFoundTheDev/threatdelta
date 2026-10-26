@@ -16,7 +16,7 @@ export default function HuntsPage() {
             Hunt <em className="italic text-rust">planner</em>
           </>
         }
-        deck="Turn the documentation delta into testable investigation hypotheses. Each brief names the logs, steps and false positives an analyst needs before running it."
+        deck="Five things to check if the delta matters. Each brief gives you the signals, the steps and the noise you will hit."
         actions={
           <>
             <Badge tone="neutral">{scoredHunts.length} hypotheses</Badge>
