@@ -2,7 +2,9 @@ import {
   baselineSnapshot,
   caseFile,
   conflicts,
+  dataset,
   hunts,
+  monitoring,
   observations,
   sigmaRules,
   sourceById,
@@ -16,7 +18,7 @@ import { scoreHunts } from "./hunt";
 import { validateDataset } from "./provenance";
 import type { Observation, Source } from "./types";
 
-export { caseFile };
+export { caseFile, dataset };
 
 export const comparison = compareSnapshots(
   baselineSnapshot,
@@ -49,6 +51,8 @@ export const scoredHunts = scoreHunts(
 
 export const validationIssues = validateDataset({
   caseFile,
+  dataset,
+  monitoring,
   sources,
   techniques,
   observations,
@@ -105,6 +109,7 @@ export const recentFindings = directEvidenceFindings();
 
 export const datasetStats = {
   snapshots: caseFile.snapshots.length,
+  findings: observations.length,
   baselineTechniques: comparison.counts.baseline,
   targetTechniques: comparison.counts.target,
   addedMappings: comparison.counts.addedMappings,

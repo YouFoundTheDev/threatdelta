@@ -41,8 +41,9 @@ describe("ATT&CK matching", () => {
   });
 
   it("summarises target and baseline coverage from the catalogue", () => {
-    expect(targetCoverage.summary).toMatchObject({ total: 34, direct: 8, broad: 2, gap: 24, covered: 8 });
-    expect(baselineCoverage.summary).toMatchObject({ total: 26, direct: 7, broad: 2, gap: 17, covered: 7 });
+    expect(targetCoverage.summary).toMatchObject({ total: 34, direct: 11, broad: 1, gap: 22, covered: 11, percent: 32 });
+    expect(baselineCoverage.summary).toMatchObject({ total: 26, direct: 8, broad: 1, gap: 17, covered: 8, percent: 31 });
+    expect(datasetStats.sigmaRules).toBe(19);
     expect(datasetStats.sigmaRules).toBe(sigmaRules.length);
     expect(observations).toHaveLength(60);
   });

@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
+import { caseFile, datasetStats } from "@/lib/analysis";
+import { monitoring } from "@/lib/data";
 
 const plexSans = localFont({
   src: "../public/fonts/ibm-plex-sans-var.woff2",
@@ -40,7 +42,21 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${instrumentSerif.variable}`}>
       <body>
-        <AppShell>{children}</AppShell>
+        <AppShell
+          stats={{
+            baseline: datasetStats.baselineTechniques,
+            target: datasetStats.targetTechniques,
+            findings: datasetStats.findings,
+            rules: datasetStats.sigmaRules,
+            hunts: datasetStats.hunts,
+          }}
+          attackVersion={caseFile.attackVersion}
+          verifiedAt={caseFile.verifiedAt}
+          historicalCutoff={caseFile.asOf}
+          refreshUrl={monitoring.workflowUrl}
+        >
+          {children}
+        </AppShell>
       </body>
     </html>
   );

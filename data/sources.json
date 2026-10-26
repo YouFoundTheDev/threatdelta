@@ -6,7 +6,8 @@
     "kind": "government",
     "publishedAt": "2022-02-04",
     "url": "https://www.ic3.gov/CSA/2022/220204.pdf",
-    "note": "FBI Flash CU-000162-MW, TLP:WHITE. Coordinated with CISA."
+    "note": "FBI Flash CU-000162-MW, TLP:WHITE. Coordinated with CISA. Historical publication date verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
   },
   {
     "id": "cisa-aa23-075a",
@@ -15,7 +16,8 @@
     "kind": "government",
     "publishedAt": "2023-03-16",
     "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a",
-    "note": "Joint advisory AA23-075A. Includes LockBit 3.0 command-line parameters, registry artifacts and ATT&CK table."
+    "note": "Joint advisory AA23-075A. Includes LockBit 3.0 command-line parameters, registry artifacts and ATT&CK table. Historical release date verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
   },
   {
     "id": "cisa-aa23-165a",
@@ -24,27 +26,38 @@
     "kind": "government",
     "publishedAt": "2023-06-14",
     "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a",
-    "note": "Joint advisory AA23-165A. Broad LockBit affiliate TTP review with ATT&CK tables 5\u201316."
+    "note": "Joint advisory AA23-165A. Broad LockBit affiliate TTP review with ATT&CK tables 5–16. Historical release date verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
+  },
+  {
+    "id": "mitre-attack-release",
+    "title": "MITRE ATT&CK v20.0 release",
+    "publisher": "MITRE ATT&CK",
+    "kind": "mitre",
+    "publishedAt": "2026-10-13",
+    "retrievedAt": "2026-10-26",
+    "url": "https://github.com/mitre-attack/attack-stix-data/releases/tag/v20.0",
+    "note": "Official Enterprise ATT&CK STIX release used for the v20.0 technique and software mappings. Dataset SHA-256 81113ba98afa2928f3dcff62022539f7ce30c315c32e14422f11ff95ce534352, verified 26 Oct 2026."
   },
   {
     "id": "mitre-s1199",
-    "title": "MITRE ATT&CK \u2014 LockBit 2.0 (S1199)",
+    "title": "MITRE ATT&CK v20.0 — LockBit 2.0 (S1199)",
     "publisher": "MITRE ATT&CK",
     "kind": "mitre",
     "publishedAt": "2025-10-21",
     "url": "https://attack.mitre.org/software/S1199/",
     "retrievedAt": "2026-10-26",
-    "note": "Living Enterprise ATT&CK dataset (v18); page last modified 21 Oct 2025, retrieved 26 Oct 2026."
+    "note": "Enterprise ATT&CK v20.0 software mapping. Software object last modified 21 Oct 2025; page verified 26 Oct 2026."
   },
   {
     "id": "mitre-s1202",
-    "title": "MITRE ATT&CK \u2014 LockBit 3.0 (S1202)",
+    "title": "MITRE ATT&CK v20.0 — LockBit 3.0 (S1202)",
     "publisher": "MITRE ATT&CK",
     "kind": "mitre",
     "publishedAt": "2025-10-21",
     "url": "https://attack.mitre.org/software/S1202/",
     "retrievedAt": "2026-10-26",
-    "note": "Living Enterprise ATT&CK dataset (v18); page last modified 21 Oct 2025, retrieved 26 Oct 2026."
+    "note": "Enterprise ATT&CK v20.0 software mapping. Software object last modified 21 Oct 2025; page verified 26 Oct 2026."
   },
   {
     "id": "sentinelone-lockbit3",
@@ -53,7 +66,8 @@
     "kind": "vendor",
     "publishedAt": "2022-07-21",
     "url": "https://www.sentinelone.com/labs/lockbit-3-0-update-unpicking-the-ransomwares-latest-anti-analysis-and-evasion-techniques/",
-    "note": "Vendor technical analysis cited by MITRE for debugger evasion, CMSTP abuse and service installation."
+    "note": "Vendor technical analysis cited by MITRE for debugger evasion, CMSTP abuse and service installation. Published 21 Jul 2022; URL verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
   },
   {
     "id": "unit42-lockbit2",
@@ -62,15 +76,17 @@
     "kind": "vendor",
     "publishedAt": "2022-06-09",
     "url": "https://unit42.paloaltonetworks.com/lockbit-2-ransomware/",
-    "note": "Vendor analysis cited by MITRE for LockBit 2.0 execution, discovery, persistence and lateral movement."
+    "note": "Vendor analysis cited by MITRE for LockBit 2.0 execution, discovery, persistence and lateral movement. Published 9 Jun 2022; last modified 5 Jun 2024; URL verified 26 Oct 2026.",
+    "retrievedAt": "2026-10-26"
   },
   {
     "id": "sigma-hq",
     "title": "SigmaHQ detection rule repository",
     "publisher": "SigmaHQ",
     "kind": "community",
-    "publishedAt": "2026-10-26",
+    "publishedAt": "2026-10-21",
     "url": "https://github.com/SigmaHQ/sigma",
-    "note": "Public Sigma rules are reproduced as metadata and source links only. Rule text remains subject to the SigmaHQ Detection Rule License."
+    "note": "Public SigmaHQ rules verified at commit 05d1031f537e830b76da53bae2400c5814c89165 (21 Oct 2026). Rule source links are pinned to that commit. Rule text remains subject to the SigmaHQ Detection Rule License.",
+    "retrievedAt": "2026-10-26"
   }
 ]

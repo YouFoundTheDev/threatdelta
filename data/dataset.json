@@ -1,0 +1,29 @@
+{
+  "attack": {
+    "version": "v20.0",
+    "releasedAt": "2026-10-13",
+    "verifiedAt": "2026-10-26",
+    "sourceUrl": "https://github.com/mitre-attack/attack-stix-data/releases/tag/v20.0",
+    "datasetUrl": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack-20.0.json",
+    "datasetSha256": "81113ba98afa2928f3dcff62022539f7ce30c315c32e14422f11ff95ce534352",
+    "software": {
+      "S1199": {
+        "name": "LockBit 2.0",
+        "modifiedAt": "2025-10-21T17:57:24.341Z",
+        "techniqueCount": 26
+      },
+      "S1202": {
+        "name": "LockBit 3.0",
+        "modifiedAt": "2025-10-21T23:34:46.898Z",
+        "techniqueCount": 34
+      }
+    }
+  },
+  "sigma": {
+    "repositoryUrl": "https://github.com/SigmaHQ/sigma",
+    "commit": "05d1031f537e830b76da53bae2400c5814c89165",
+    "commitDate": "2026-10-21",
+    "verifiedAt": "2026-10-26",
+    "ruleCount": 19
+  }
+}

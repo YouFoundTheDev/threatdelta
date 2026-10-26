@@ -109,7 +109,7 @@ export default function DashboardPage() {
         deck={caseFile.deck}
         actions={
           <>
-            <Badge tone="neutral">Cut-off {formatDate(caseFile.asOf)}</Badge>
+            <Badge tone="neutral">Historical cut-off {formatDate(caseFile.asOf)}</Badge>
             <ButtonLink href="/diff" variant="primary">
               Open intelligence diff <ArrowRight className="size-3.5" />
             </ButtonLink>
@@ -117,19 +117,19 @@ export default function DashboardPage() {
         }
       >
         <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.1em] text-muted">
-          <span className="text-ink">FBI flash · 04 Feb 2022</span>
+          <span className="text-ink">Historical · FBI flash · 04 Feb 2022</span>
           <ArrowRight className="size-3 text-line-strong" />
           <span>CISA 075A · 16 Mar 2023</span>
           <ArrowRight className="size-3 text-line-strong" />
           <span className="text-rust">CISA 165A · 14 Jun 2023</span>
           <span className="hidden h-3 w-px bg-line-strong sm:inline-block" />
-          <span>ATT&CK v18 software mappings</span>
+          <span>{caseFile.attackVersion} · verified {formatDate(caseFile.verifiedAt)}</span>
         </div>
       </PageHeader>
 
       <section className="mt-6 grid grid-cols-2 gap-px border border-line-strong bg-line lg:grid-cols-4" aria-label="Case statistics">
-        <Stat label="Target mappings" value={datasetStats.targetTechniques} note="26 baseline · +14 added / −6 dropped" />
-        <Stat label="Added mappings" value={datasetStats.addedMappings} note="13 new · 1 sub-technique refinement" />
+        <Stat label="Target mappings" value={datasetStats.targetTechniques} note={`${datasetStats.baselineTechniques} baseline · +${datasetStats.addedMappings} added / −${datasetStats.notRedocumented} dropped`} />
+        <Stat label="Added mappings" value={datasetStats.addedMappings} note={`${datasetStats.newlyDocumented} new · ${datasetStats.refinements} sub-technique refinement`} />
         <Stat label="Shared across snapshots" value={datasetStats.shared} note={`${datasetStats.notRedocumented} not re-documented in 3.0`} />
         <Stat label="Exact Sigma coverage" value={`${datasetStats.coverage.covered}/${datasetStats.coverage.total}`} note={`${datasetStats.coverage.broad} parent-tagged · ${datasetStats.coverage.gap} gaps`} />
       </section>

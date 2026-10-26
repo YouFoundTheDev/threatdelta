@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  ArrowUpRight,
   BookOpen,
   Crosshair,
   FileOutput,
@@ -15,16 +16,26 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
-const nav: Array<{ href: string; label: string; icon: LucideIcon; note: string }> = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard, note: "Case overview" },
-  { href: "/diff", label: "Intelligence diff", icon: GitCompareArrows, note: "26 → 34 mappings" },
-  { href: "/evidence", label: "Evidence explorer", icon: Search, note: "60 findings" },
-  { href: "/detections", label: "Detection coverage", icon: ShieldCheck, note: "15 public Sigma rules" },
-  { href: "/hunts", label: "Hunt planner", icon: Crosshair, note: "5 hypotheses" },
-  { href: "/reports", label: "Reports", icon: FileOutput, note: "Markdown / JSON" },
-];
+export interface ShellStats {
+  baseline: number;
+  target: number;
+  findings: number;
+  rules: number;
+  hunts: number;
+}
+
+function navItems(stats: ShellStats): Array<{ href: string; label: string; icon: LucideIcon; note: string }> {
+  return [
+    { href: "/", label: "Dashboard", icon: LayoutDashboard, note: "Case overview" },
+    { href: "/diff", label: "Intelligence diff", icon: GitCompareArrows, note: `${stats.baseline} → ${stats.target} mappings` },
+    { href: "/evidence", label: "Evidence explorer", icon: Search, note: `${stats.findings} findings` },
+    { href: "/detections", label: "Detection coverage", icon: ShieldCheck, note: `${stats.rules} public Sigma rules` },
+    { href: "/hunts", label: "Hunt planner", icon: Crosshair, note: `${stats.hunts} hypotheses` },
+    { href: "/reports", label: "Reports", icon: FileOutput, note: "Markdown / JSON" },
+  ];
+}
 
 const sectionNames: Record<string, string> = {
   "/": "Dashboard",
@@ -36,7 +47,7 @@ const sectionNames: Record<string, string> = {
   "/method": "Method & sources",
 };
 
-function CaseCard() {
+function CaseCard({ stats, cutoff }: { stats: ShellStats; cutoff: string }) {
   return (
     <div className="border border-sidebar-line bg-white/[0.03] px-3 py-3">
       <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-sidebar-muted">Active case</p>
@@ -44,17 +55,17 @@ function CaseCard() {
         LockBit, <span className="text-rust">2.0 → 3.0</span>
       </p>
       <p className="mt-2 text-[11px] leading-4 text-sidebar-muted">
-        26 baseline mappings · 34 target mappings · cut-off 14 Jun 2023
+        {stats.baseline} baseline · {stats.target} target mappings · historical cut-off {formatDate(cutoff)}
       </p>
     </div>
   );
 }
 
-function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+function NavLinks({ items, onNavigate }: { items: ReturnType<typeof navItems>; onNavigate?: () => void }) {
   const pathname = usePathname();
   return (
     <nav className="mt-6 space-y-0.5" aria-label="Main navigation">
-      {nav.map((item) => {
+      {items.map((item) => {
         const active = pathname === item.href;
         const Icon = item.icon;
         return (
@@ -97,7 +108,21 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({
+  children,
+  stats,
+  attackVersion,
+  verifiedAt,
+  historicalCutoff,
+  refreshUrl,
+}: {
+  children: ReactNode;
+  stats: ShellStats;
+  attackVersion: string;
+  verifiedAt: string;
+  historicalCutoff: string;
+  refreshUrl: string;
+}) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const section = sectionNames[pathname] ?? "Case";
@@ -132,17 +157,26 @@ export function AppShell({ children }: { children: ReactNode }) {
         </Link>
 
         <div className="mt-7">
-          <CaseCard />
+          <CaseCard stats={stats} cutoff={historicalCutoff} />
         </div>
-        <NavLinks />
+        <NavLinks items={navItems(stats)} />
         <div className="mt-auto border-t border-sidebar-line pt-4">
           <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.12em] text-sidebar-muted">
-            <span>ATT&CK v18</span>
-            <span>Local JSON</span>
+            <span>{attackVersion}</span>
+            <span>Verified {formatDate(verifiedAt)}</span>
           </div>
           <p className="mt-2 text-[10px] leading-4 text-sidebar-muted">
-            Public-source analysis. No telemetry, credentials or live customer data.
+            Local JSON. Public-source analysis. No telemetry, credentials or live customer data.
           </p>
+          <a
+            href={refreshUrl}
+            target="_blank"
+            rel="noreferrer"
+            title="GitHub repository access required"
+            className="mt-2 inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.08em] text-sidebar-muted hover:text-paper"
+          >
+            Weekly refresh <ArrowUpRight className="size-3" />
+          </a>
         </div>
       </aside>
 
@@ -186,11 +220,22 @@ export function AppShell({ children }: { children: ReactNode }) {
               </button>
             </div>
             <div className="mt-6">
-              <CaseCard />
+              <CaseCard stats={stats} cutoff={historicalCutoff} />
             </div>
-            <NavLinks onNavigate={() => setOpen(false)} />
-            <div className="mt-auto border-t border-sidebar-line pt-4 font-mono text-[9px] uppercase tracking-[0.12em] text-sidebar-muted">
-              ATT&CK v18 · Local JSON
+            <NavLinks items={navItems(stats)} onNavigate={() => setOpen(false)} />
+            <div className="mt-auto border-t border-sidebar-line pt-4">
+              <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-sidebar-muted">
+                {attackVersion} · verified {formatDate(verifiedAt)}
+              </p>
+              <a
+                href={refreshUrl}
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub repository access required"
+                className="mt-2 inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.08em] text-sidebar-muted hover:text-paper"
+              >
+                Weekly refresh <ArrowUpRight className="size-3" />
+              </a>
             </div>
           </div>
         </div>
@@ -206,9 +251,11 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="text-ink">{section}</span>
           </div>
           <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
-            <span>Snapshot 14 Jun 2023</span>
+            <span>Historical cut-off {formatDate(historicalCutoff)}</span>
             <span className="h-3 w-px bg-line-strong" />
-            <span>ATT&CK v18</span>
+            <span>{attackVersion}</span>
+            <span className="hidden h-3 w-px bg-line-strong xl:inline-block" />
+            <span className="hidden xl:inline">Verified {formatDate(verifiedAt)}</span>
           </div>
         </div>
 

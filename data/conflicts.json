@@ -3,8 +3,12 @@
     "id": "wmi-shadow-copy",
     "title": "WMI shadow-copy deletion: capability vs observed command",
     "nature": "capability",
-    "techniqueIds": ["T1047"],
-    "snapshotIds": ["lockbit-2.0"],
+    "techniqueIds": [
+      "T1047"
+    ],
+    "snapshotIds": [
+      "lockbit-2.0"
+    ],
     "claims": [
       {
         "sourceId": "mitre-s1199",
@@ -29,8 +33,13 @@
     "id": "log-deletion-mapping",
     "title": "Log destruction mapped two ways",
     "nature": "taxonomy",
-    "techniqueIds": ["T1485", "T1685.005"],
-    "snapshotIds": ["lockbit-3.0"],
+    "techniqueIds": [
+      "T1485",
+      "T1685.005"
+    ],
+    "snapshotIds": [
+      "lockbit-3.0"
+    ],
     "claims": [
       {
         "sourceId": "cisa-aa23-075a",
@@ -49,7 +58,7 @@
         "locator": "CISA AA23-165A · Table 9, Defense Evasion"
       }
     ],
-    "interpretation": "The statements can describe different artifacts: Windows Event Logs versus general log files and the recycle bin. ATT&CK v18 also renumbered T1070.001 as T1685.005, so the source IDs are not interchangeable.",
+    "interpretation": "The statements can describe different artifacts: Windows Event Logs versus general log files and the recycle bin. ATT&CK v20.0 uses T1685.005; the source’s T1070.001 is revoked. The source IDs are not interchangeable.",
     "analystAction": "Write separate detections for event log clearing, log-file deletion and recycle-bin destruction. Do not deduplicate them by a single TTP label.",
     "status": "scope-dependent"
   },
@@ -57,8 +66,12 @@
     "id": "safe-mode-source-silence",
     "title": "Safe Mode: documented in March, absent from the June tables",
     "nature": "coverage",
-    "techniqueIds": ["T1688"],
-    "snapshotIds": ["lockbit-3.0"],
+    "techniqueIds": [
+      "T1688"
+    ],
+    "snapshotIds": [
+      "lockbit-3.0"
+    ],
     "claims": [
       {
         "sourceId": "cisa-aa23-075a",

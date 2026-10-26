@@ -1,7 +1,9 @@
 import type {
+  AttackDataset,
   CaseFile,
   Conflict,
   Hunt,
+  MonitoringConfig,
   Observation,
   SigmaRule,
   Source,
@@ -10,6 +12,8 @@ import type {
 
 export interface DatasetInput {
   caseFile: CaseFile;
+  dataset: AttackDataset;
+  monitoring: MonitoringConfig;
   sources: Source[];
   techniques: Technique[];
   observations: Observation[];
@@ -67,12 +71,69 @@ export function validateDataset(data: DatasetInput): ValidationIssue[] {
     issues.push({ level: "error", message: `Duplicate evidence id: ${id}` });
   }
 
+  const dataset = data.dataset;
+  if (!data.caseFile.attackVersion.endsWith(dataset.attack.version)) {
+    issues.push({
+      level: "error",
+      message: `Case ATT&CK label ${data.caseFile.attackVersion} does not match dataset ${dataset.attack.version}`,
+    });
+  }
+  if (data.caseFile.attackReleaseDate !== dataset.attack.releasedAt) {
+    issues.push({ level: "error", message: "Case and dataset ATT&CK release dates differ" });
+  }
+  if (data.caseFile.verifiedAt !== dataset.attack.verifiedAt) {
+    issues.push({ level: "error", message: "Case and dataset verification dates differ" });
+  }
+  if (!isHttpUrl(dataset.attack.sourceUrl) || !isHttpUrl(dataset.attack.datasetUrl)) {
+    issues.push({ level: "error", message: "Dataset source URLs are invalid" });
+  }
+  if (data.sigmaRules.length !== dataset.sigma.ruleCount) {
+    issues.push({
+      level: "error",
+      message: `Sigma catalogue has ${data.sigmaRules.length} rules but manifest says ${dataset.sigma.ruleCount}`,
+    });
+  }
+  for (const [softwareId, software] of Object.entries(dataset.attack.software)) {
+    const snapshotId = softwareId === "S1199" ? "lockbit-2.0" : softwareId === "S1202" ? "lockbit-3.0" : null;
+    if (!snapshotId) {
+      issues.push({ level: "error", message: `Unknown software manifest entry ${softwareId}` });
+      continue;
+    }
+    const count = data.observations.filter((observation) => observation.snapshotId === snapshotId).length;
+    if (count !== software.techniqueCount) {
+      issues.push({
+        level: "error",
+        message: `${softwareId} has ${count} observations but manifest says ${software.techniqueCount}`,
+      });
+    }
+  }
+
+  if (!isHttpUrl(data.monitoring.workflowUrl) || !isHttpUrl(data.monitoring.attack.indexUrl) || !isHttpUrl(data.monitoring.sigma.commitApi)) {
+    issues.push({ level: "error", message: "Monitoring configuration contains an invalid URL" });
+  }
+  if (data.monitoring.reportFeeds.length < 2) {
+    issues.push({ level: "error", message: "At least two report feeds must be monitored" });
+  }
+  for (const feed of data.monitoring.reportFeeds) {
+    if (!isHttpUrl(feed.url)) issues.push({ level: "error", message: `${feed.id} has an invalid feed URL` });
+    if (feed.terms.length === 0) issues.push({ level: "error", message: `${feed.id} has no matching terms` });
+  }
+  for (const report of data.monitoring.knownReports) {
+    if (!isHttpUrl(report.url)) issues.push({ level: "error", message: `${report.title} has an invalid URL` });
+  }
+
   for (const source of data.sources) {
     if (!isHttpUrl(source.url)) {
       issues.push({ level: "error", message: `${source.id} has an invalid URL` });
     }
     if (!source.publishedAt) {
       issues.push({ level: "error", message: `${source.id} has no publication date` });
+    }
+    if (!source.retrievedAt) {
+      issues.push({ level: "warning", message: `${source.id} has no verification date` });
+    }
+    if (source.retrievedAt && source.retrievedAt < source.publishedAt) {
+      issues.push({ level: "error", message: `${source.id} was verified before it was published` });
     }
   }
 
@@ -195,6 +256,12 @@ export function validateDataset(data: DatasetInput): ValidationIssue[] {
   for (const rule of data.sigmaRules) {
     if (!isHttpUrl(rule.sourceUrl)) {
       issues.push({ level: "error", message: `${rule.id} has an invalid source URL` });
+    }
+    if (!rule.sourceUrl.includes(dataset.sigma.commit)) {
+      issues.push({
+        level: "error",
+        message: `${rule.id} is not pinned to the verified SigmaHQ commit`,
+      });
     }
     if (rule.techniqueIds.length === 0) {
       issues.push({ level: "error", message: `${rule.title} has no ATT&CK tags` });

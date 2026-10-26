@@ -298,7 +298,7 @@ export function DiffWorkbench({
     <div>
       <div className="grid gap-px border border-line-strong bg-line md:grid-cols-[1fr_auto_1fr]">
         <div className="bg-surface px-5 py-4">
-          <SectionLabel>Baseline A</SectionLabel>
+          <SectionLabel>Baseline A · historical</SectionLabel>
           <p className="mt-1 font-display text-[32px] leading-none tracking-[-0.02em]">{comparison.baseline.label}</p>
           <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.08em] text-muted">{formatDate(comparison.baseline.releasedAt)} · {comparison.counts.baseline} mappings</p>
           <p className="mt-3 max-w-lg text-[11px] leading-5 text-muted">{comparison.baseline.summary}</p>
@@ -307,7 +307,7 @@ export function DiffWorkbench({
           <GitCompareArrows className="size-5 text-rust" aria-hidden />
         </div>
         <div className="bg-surface px-5 py-4">
-          <SectionLabel>Target B</SectionLabel>
+          <SectionLabel>Target B · historical</SectionLabel>
           <p className="mt-1 font-display text-[32px] leading-none tracking-[-0.02em]">{comparison.target.label}</p>
           <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.08em] text-muted">{formatDate(comparison.target.releasedAt)} · {comparison.counts.target} mappings</p>
           <p className="mt-3 max-w-lg text-[11px] leading-5 text-muted">{comparison.target.summary}</p>
@@ -325,7 +325,7 @@ export function DiffWorkbench({
 
       <div className="mt-6 grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-5">
         {[
-          ["Added mappings", comparison.counts.addedMappings, "13 new · 1 refinement"],
+          ["Added mappings", comparison.counts.addedMappings, `${comparison.counts.newlyDocumented} new · ${comparison.counts.refinements} refinement`],
           ["Shared", comparison.counts.shared, "in both mappings"],
           ["Not re-documented", comparison.counts.notRedocumented, "not proof of removal"],
           ["Claim tensions", comparison.counts.conflicts, "source disagreement"],

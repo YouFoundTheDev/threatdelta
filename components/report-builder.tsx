@@ -5,6 +5,7 @@ import { Check, Copy, Download, FileJson, FileText, Info, ShieldCheck } from "lu
 import { Badge, Button, Panel, SectionLabel } from "./ui";
 import { buildJsonReport, buildMarkdownReport, reportFilename } from "@/lib/report";
 import type {
+  AttackDataset,
   CaseFile,
   Comparison,
   CoverageResult,
@@ -22,13 +23,14 @@ type Status = "idle" | "copied" | "error";
 const optionMeta: Array<{ key: keyof ReportOptions; label: string; description: string }> = [
   { key: "includeEvidence", label: "Evidence appendix", description: "Every claim, quote, locator and confidence rationale." },
   { key: "includeCoverage", label: "Detection coverage", description: "Technique-by-technique public Sigma match result." },
-  { key: "includeHunts", label: "Hunt hypotheses", description: "Five briefs with logs, steps, false positives and scores." },
+  { key: "includeHunts", label: "Hunt hypotheses", description: "Hunt briefs with logs, steps, false positives and scores." },
   { key: "includeConflicts", label: "Claim tensions", description: "Source disagreements and analyst interpretation." },
   { key: "includeSources", label: "Sources & attribution", description: "Publisher, date, URL and provenance note." },
 ];
 
 export function ReportBuilder({
   caseFile,
+  dataset,
   comparison,
   coverage,
   hunts,
@@ -38,6 +40,7 @@ export function ReportBuilder({
   generatedAt,
 }: {
   caseFile: CaseFile;
+  dataset: AttackDataset;
   comparison: Comparison;
   coverage: CoverageResult;
   hunts: ScoredHunt[];
@@ -57,9 +60,9 @@ export function ReportBuilder({
   const [status, setStatus] = useState<Status>("idle");
 
   const report = useMemo(() => {
-    const input = { caseFile, comparison, coverage, hunts, observations, techniques, sources, generatedAt };
+    const input = { caseFile, dataset, comparison, coverage, hunts, observations, techniques, sources, generatedAt };
     return format === "md" ? buildMarkdownReport(input, options) : buildJsonReport(input, options);
-  }, [format, options, caseFile, comparison, coverage, hunts, observations, techniques, sources, generatedAt]);
+  }, [format, options, caseFile, dataset, comparison, coverage, hunts, observations, techniques, sources, generatedAt]);
 
   const filename = reportFilename(format, generatedAt);
   const sizeKb = Math.max(1, Math.round(new Blob([report]).size / 1024));

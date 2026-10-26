@@ -7,6 +7,7 @@ import {
 } from "@/lib/analysis";
 import {
   caseFile,
+  dataset,
   observations,
   sources,
   techniques,
@@ -17,6 +18,7 @@ import { scoredHunts } from "@/lib/analysis";
 const generatedAt = "2026-10-26T12:00:00.000Z";
 const input = {
   caseFile,
+  dataset,
   sources,
   comparison,
   coverage: targetCoverage,
@@ -42,9 +44,13 @@ describe("report exports", () => {
     expect(markdown).toContain("Sub-technique refinements (1)");
     expect(markdown).toContain("T1688");
     expect(markdown).toContain("WMI shadow-copy deletion");
+    expect(markdown).toContain("Historical period: February 2022 – June 2023");
+    expect(markdown).toContain("ATT&CK mapping: ATT&CK v20.0 (released 2026-10-13)");
+    expect(markdown).toContain("Data verified: 2026-10-26");
     expect(markdown).toContain("Detection coverage");
     expect(markdown).toContain("Credential-led SMB fan-out");
     expect(markdown).toContain("https://www.ic3.gov/CSA/2022/220204.pdf");
+    expect(markdown).toContain("https://github.com/mitre-attack/attack-stix-data/releases/tag/v20.0");
     expect(markdown).toContain("A missing public rule is not evidence");
     expect(markdown).not.toContain("undefined");
   });
@@ -79,9 +85,16 @@ describe("report exports", () => {
     const json = JSON.parse(raw);
     expect(json.schemaVersion).toBe("1.0");
     expect(json.generatedAt).toBe(generatedAt);
+    expect(json.meta.attackVersion).toBe("ATT&CK v20.0");
+    expect(json.meta.attackReleaseDate).toBe("2026-10-13");
+    expect(json.meta.verifiedAt).toBe("2026-10-26");
+    expect(json.meta.historicalPeriod).toBe("February 2022 – June 2023");
+    expect(json.dataset.attack.version).toBe("v20.0");
     expect(json.comparison.counts.addedMappings).toBe(14);
+    expect(json.coverage.summary.covered).toBe(11);
     expect(json.coverage.summary.covered).toBe(datasetStats.coverage.covered);
-    expect(json.coverage.summary.broad).toBe(2);
+    expect(json.coverage.summary.broad).toBe(1);
+    expect(json.sources).toHaveLength(9);
     expect(json.sources).toHaveLength(sources.length);
     expect(json.evidence).toHaveLength(60);
     expect(json.hunts).toHaveLength(5);

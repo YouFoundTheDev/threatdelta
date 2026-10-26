@@ -7,3 +7,6 @@ next-env.d.ts
 .DS_Store
 screenshots/*.tmp.png
 .vercel
+refresh-summary.json
+refresh-pr.md
+refresh-issue.md

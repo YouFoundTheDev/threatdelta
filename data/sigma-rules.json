@@ -6,8 +6,11 @@
     "level": "high",
     "description": "Detects deletion of volume shadow copies with native operating-system utilities.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1490", "T1070"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_susp_shadow_copies_deletion.yml",
+    "techniqueIds": [
+      "T1490",
+      "T1070"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_susp_shadow_copies_deletion.yml",
     "author": "Florian Roth, Michael Haag, Teymur Kheirkhabarov, Daniil Yugoslavskiy, oscd.community, Andreas Hunkeler",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -18,8 +21,10 @@
     "level": "high",
     "description": "Detects bcdedit commands that tamper with boot configuration data, a common pre-ransomware destructive step.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1490"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_bcdedit_boot_conf_tamper.yml",
+    "techniqueIds": [
+      "T1490"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_bcdedit_boot_conf_tamper.yml",
     "author": "E.M. Anhaus, oscd.community",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -30,8 +35,10 @@
     "level": "high",
     "description": "Detects PowerShell WMI activity that deletes volume shadow copies.",
     "logsource": "Windows · PowerShell classic start",
-    "techniqueIds": ["T1490"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_classic/posh_pc_delete_volume_shadow_copies.yml",
+    "techniqueIds": [
+      "T1490"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/powershell/powershell_classic/posh_pc_delete_volume_shadow_copies.yml",
     "author": "frack113",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -42,8 +49,11 @@
     "level": "medium",
     "description": "Detects the interactive acceptance prompt used when PsExec is executed against a host.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1569", "T1021"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_sysinternals_psexec_execution.yml",
+    "techniqueIds": [
+      "T1569",
+      "T1021"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_sysinternals_psexec_execution.yml",
     "author": "omkar72",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -54,8 +64,10 @@
     "level": "high",
     "description": "Detects PsExec or PAExec execution with a renamed service, reducing noise from legitimate admin use.",
     "logsource": "Windows · Security event log, detailed file share audit",
-    "techniqueIds": ["T1021.002"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/builtin/security/win_security_susp_psexec.yml",
+    "techniqueIds": [
+      "T1021.002"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/builtin/security/win_security_susp_psexec.yml",
     "author": "Samir Bousseaden",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -66,9 +78,25 @@
     "level": "medium",
     "description": "Detects PsExec service installation and execution events in the System log.",
     "logsource": "Windows · System log, Service Control Manager EID 7045",
-    "techniqueIds": ["T1569.002"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/builtin/system/service_control_manager/win_system_service_install_sysinternals_psexec.yml",
+    "techniqueIds": [
+      "T1569.002"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/builtin/system/service_control_manager/win_system_service_install_sysinternals_psexec.yml",
     "author": "Thomas Patzke",
+    "license": "SigmaHQ DRL 1.1"
+  },
+  {
+    "id": "304afd73-55a5-4bb9-8c21-0b1fc84ea9e4",
+    "title": "PSEXEC Remote Execution File Artefact",
+    "status": "test",
+    "level": "high",
+    "description": "Detects the PSEXEC-*.key artefact written to disk during PsExec remote execution.",
+    "logsource": "Windows · file event (C:\\Windows\\PSEXEC-*.key)",
+    "techniqueIds": [
+      "T1543.003"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/file/file_event/file_event_win_sysinternals_psexec_service_key.yml",
+    "author": "Nasreddine Bencherchali (Nextron Systems)",
     "license": "SigmaHQ DRL 1.1"
   },
   {
@@ -78,8 +106,10 @@
     "level": "high",
     "description": "Detects execution of the Microsoft Connection Manager Profile Installer, a known code-proxy execution tool.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1218.003"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_cmstp_execution_by_creation.yml",
+    "techniqueIds": [
+      "T1218.003"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_cmstp_execution_by_creation.yml",
     "author": "Nik Seetharaman",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -90,8 +120,10 @@
     "level": "high",
     "description": "Detects PowerShell process starts that use Base64-encoded commands.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1059.001"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_powershell_base64_encoded_cmd.yml",
+    "techniqueIds": [
+      "T1059.001"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_powershell_base64_encoded_cmd.yml",
     "author": "Florian Roth, Markus Neis, Jonhnathan Ribeiro, Daniil Yugoslavskiy, Anton Kutepov, oscd.community",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -102,8 +134,10 @@
     "level": "high",
     "description": "Detects writes to Winlogon Notify registry keys used to execute code at logon.",
     "logsource": "Windows · registry set (Sysmon EID 13)",
-    "techniqueIds": ["T1547.004"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/registry/registry_set/registry_set_winlogon_notify_key.yml",
+    "techniqueIds": [
+      "T1547.004"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/registry/registry_set/registry_set_winlogon_notify_key.yml",
     "author": "frack113",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -114,8 +148,10 @@
     "level": "medium",
     "description": "Detects PowerShell writes to Winlogon helper registry keys that can load attacker-controlled code at logon.",
     "logsource": "Windows · PowerShell script block logging",
-    "techniqueIds": ["T1547.004"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_winlogon_helper_dll.yml",
+    "techniqueIds": [
+      "T1547.004"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/powershell/powershell_script/posh_ps_winlogon_helper_dll.yml",
     "author": "Timur Zinniatullin, oscd.community",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -126,8 +162,10 @@
     "level": "high",
     "description": "Detects registry changes that disable the Windows Defender service (WinDefend).",
     "logsource": "Windows · registry set (Sysmon EID 13)",
-    "techniqueIds": ["T1685"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/registry/registry_set/registry_set_disable_windows_defender_service.yml",
+    "techniqueIds": [
+      "T1685"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/registry/registry_set/registry_set_disable_windows_defender_service.yml",
     "author": "Ján Trenčanský, frack113, AlertIQ, Nasreddine Bencherchali",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -138,9 +176,39 @@
     "level": "medium",
     "description": "Detects when the Windows Defender threat protection service is disabled.",
     "logsource": "Windows · System log, Service Control Manager",
-    "techniqueIds": ["T1685"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/builtin/system/service_control_manager/win_system_defender_disabled.yml",
+    "techniqueIds": [
+      "T1685"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/builtin/system/service_control_manager/win_system_defender_disabled.yml",
     "author": "Ján Trenčanský, frack113",
+    "license": "SigmaHQ DRL 1.1"
+  },
+  {
+    "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+    "title": "Security Eventlog Cleared",
+    "status": "test",
+    "level": "high",
+    "description": "Detects a Windows Security event log being cleared, including EID 1102 and legacy EID 517.",
+    "logsource": "Windows · Security log (EID 1102 / 517)",
+    "techniqueIds": [
+      "T1685.005"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/builtin/security/win_security_audit_log_cleared.yml",
+    "author": "Florian Roth (Nextron Systems)",
+    "license": "SigmaHQ DRL 1.1"
+  },
+  {
+    "id": "a62b37e0-45d3-48d9-a517-90c1a1b0186b",
+    "title": "Eventlog Cleared",
+    "status": "test",
+    "level": "medium",
+    "description": "Detects a Microsoft-Windows-Eventlog clearing event in the System log (EID 104).",
+    "logsource": "Windows · System log, Microsoft-Windows-Eventlog EID 104",
+    "techniqueIds": [
+      "T1685.005"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/builtin/system/microsoft_windows_eventlog/win_system_eventlog_cleared.yml",
+    "author": "Florian Roth (Nextron Systems)",
     "license": "SigmaHQ DRL 1.1"
   },
   {
@@ -150,8 +218,10 @@
     "level": "medium",
     "description": "Detects file renames to uncommon double extensions, a possible sign of ransomware encryption.",
     "logsource": "Windows · file rename (Microsoft-Windows-Kernel-File)",
-    "techniqueIds": ["T1486"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/file/file_rename/file_rename_win_ransomware.yml",
+    "techniqueIds": [
+      "T1486"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/file/file_rename/file_rename_win_ransomware.yml",
     "author": "frack113",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -162,8 +232,10 @@
     "level": "medium",
     "description": "Detects attempts to terminate a process using wmic call terminate.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1047"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_wmic_terminate_application.yml",
+    "techniqueIds": [
+      "T1047"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_wmic_terminate_application.yml",
     "author": "Nasreddine Bencherchali",
     "license": "SigmaHQ DRL 1.1"
   },
@@ -174,9 +246,25 @@
     "level": "low",
     "description": "Detects scheduled task creation by user accounts through the schtasks utility.",
     "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
-    "techniqueIds": ["T1053.005"],
-    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_schtasks_creation.yml",
+    "techniqueIds": [
+      "T1053.005"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_schtasks_creation.yml",
     "author": "Florian Roth",
+    "license": "SigmaHQ DRL 1.1"
+  },
+  {
+    "id": "811e0002-b13b-4a15-9d00-a613fce66e42",
+    "title": "PUA - Process Hacker Execution",
+    "status": "test",
+    "level": "medium",
+    "description": "Detects execution of Process Hacker, a tool abused to manipulate processes and security tooling.",
+    "logsource": "Windows · process creation (Sysmon EID 1 / Security 4688)",
+    "techniqueIds": [
+      "T1622"
+    ],
+    "sourceUrl": "https://github.com/SigmaHQ/sigma/blob/05d1031f537e830b76da53bae2400c5814c89165/rules/windows/process_creation/proc_creation_win_pua_process_hacker.yml",
+    "author": "Florian Roth (Nextron Systems)",
     "license": "SigmaHQ DRL 1.1"
   }
 ]

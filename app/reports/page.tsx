@@ -7,7 +7,7 @@ import {
   scoredHunts,
   targetCoverage,
 } from "@/lib/analysis";
-import { observations, sources, techniques } from "@/lib/data";
+import { dataset, observations, sources, techniques } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Reports — ThreatDelta" };
 export const dynamic = "force-dynamic";
@@ -36,6 +36,7 @@ export default function ReportsPage() {
       <div className="mt-7">
         <ReportBuilder
           caseFile={caseFile}
+          dataset={dataset}
           comparison={comparison}
           coverage={targetCoverage}
           hunts={scoredHunts}

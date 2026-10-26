@@ -21,7 +21,7 @@ function copyText(scored: ScoredHunt): string {
   return [
     `# ${hunt.title}`,
     "",
-    `**Priority:** ${scored.score}/11 (rank ${scored.rank} of 5)`,
+    `**Priority:** ${scored.score}/11 (rank ${scored.rank})`,
     "",
     `**Question:** ${hunt.question}`,
     "",
@@ -267,7 +267,7 @@ export function HuntPlanner({
             const active = selected?.hunt.id === scored.hunt.id;
             const gaps = scored.hunt.techniqueIds.filter((id) => {
               const item = coverage.techniques.find((entry) => entry.technique.id === id);
-              return !item || item.status === "gap";
+              return item?.status === "gap";
             }).length;
             return (
               <div key={scored.hunt.id} className="border-b border-line last:border-b-0">

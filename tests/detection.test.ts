@@ -17,6 +17,21 @@ describe("detection coverage", () => {
     expect(coverage.related.some((match) => match.rule.id === "bbf59793-6efb-4fa1-95ca-a7d288e52c88")).toBe(true);
   });
 
+  it("prefers exact event-log rules over unrelated parent-tagged rules", () => {
+    const coverage = coverTechnique(
+      techniqueById.get("T1685.005")!,
+      observations.find((item) => item.techniqueId === "T1685.005"),
+      sigmaRules,
+      techniques,
+    );
+    expect(coverage.status).toBe("direct");
+    expect(coverage.matches.map((match) => match.rule.title)).toEqual([
+      "Eventlog Cleared",
+      "Security Eventlog Cleared",
+    ]);
+    expect(coverage.matches.some((match) => match.rule.title.includes("Defender"))).toBe(false);
+  });
+
   it("labels coverage statuses without rounding gaps away", () => {
     const wmic = coverTechnique(
       techniqueById.get("T1047")!,

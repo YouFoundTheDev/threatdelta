@@ -21,11 +21,11 @@ export default function DiffPage() {
             Intelligence <em className="italic text-rust">diff</em>
           </>
         }
-        deck="Compare the ATT&CK mappings of two public LockBit snapshots. Each row is a mapping change, not an incident count or a claim of adoption."
+        deck="Compare the ATT&CK mappings of two historical LockBit snapshots against the current dataset. Each row is a mapping change, not an incident count or a claim of adoption."
         actions={
           <>
-            <Badge tone="neutral">Baseline 4 Feb 2022</Badge>
-            <Badge tone="ink">Target 14 Jun 2023</Badge>
+            <Badge tone="neutral">Historical baseline · 4 Feb 2022</Badge>
+            <Badge tone="ink">Historical target · 14 Jun 2023</Badge>
           </>
         }
       />

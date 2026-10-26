@@ -22,5 +22,10 @@ describe("hunt prioritisation", () => {
     const safeMode = scoredHunts.find((hunt) => hunt.hunt.id === "safe-mode-reboot");
     expect(safeMode?.factors.find((factor) => factor.label === "Detection gap")?.points).toBe(3);
     expect(safeMode?.hunt.requiredLogs.length).toBeGreaterThanOrEqual(4);
+
+    const logHunt = scoredHunts.find((hunt) => hunt.hunt.id === "log-destruction");
+    expect(logHunt?.score).toBe(6);
+    expect(logHunt?.factors.find((factor) => factor.label === "Detection gap")?.points).toBe(0);
+    expect(logHunt?.hunt.rationale).toContain("exact public coverage for Windows Event Log clearing");
   });
 });

@@ -761,7 +761,7 @@
     "tacticLabels": [
       "Defense Impairment"
     ],
-    "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or\u2026",
+    "description": "Adversaries may disable, degrade, or tamper with security tools or applications (e.g., endpoint detection and response (EDR) tools, intrusion detection systems (IDS), antivirus, logging agents, sensors, etc.) to impair or reduce…",
     "url": "https://attack.mitre.org/techniques/T1685/",
     "subtechniqueOf": null
   },

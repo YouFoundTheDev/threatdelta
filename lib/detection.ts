@@ -42,7 +42,11 @@ export function coverTechnique(
     }
   }
 
-  matches.sort((a, b) => {
+  const exactMatches = matches.filter((match) => match.match === "exact");
+  // once exact coverage exists, parent-tagged rules add noise rather than evidence
+  const displayedMatches = exactMatches.length > 0 ? exactMatches : matches;
+
+  displayedMatches.sort((a, b) => {
     const byMatch = a.match === b.match ? 0 : a.match === "exact" ? -1 : 1;
     return byMatch || a.rule.title.localeCompare(b.rule.title);
   });
@@ -52,7 +56,7 @@ export function coverTechnique(
     technique,
     observation,
     status: statusFor(matches),
-    matches,
+    matches: displayedMatches,
     related,
   };
 }

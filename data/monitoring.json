@@ -1,0 +1,71 @@
+{
+  "cadence": "Weekly · Mondays 06:00 UTC",
+  "workflowUrl": "https://github.com/YouFoundTheDev/threatdelta/actions/workflows/refresh-intel.yml",
+  "attack": {
+    "indexUrl": "https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/index.json"
+  },
+  "sigma": {
+    "commitApi": "https://api.github.com/repos/SigmaHQ/sigma/commits/master",
+    "repositoryUrl": "https://github.com/SigmaHQ/sigma"
+  },
+  "reportFeeds": [
+    {
+      "id": "cisa-advisories",
+      "name": "CISA advisories",
+      "kind": "government",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "terms": [
+        "lockbit"
+      ]
+    },
+    {
+      "id": "fbi-ic3-csa",
+      "name": "FBI IC3 alerts",
+      "kind": "government",
+      "url": "https://www.ic3.gov/CSA/rss",
+      "terms": [
+        "lockbit"
+      ]
+    },
+    {
+      "id": "unit42",
+      "name": "Unit 42 research",
+      "kind": "vendor",
+      "url": "https://unit42.paloaltonetworks.com/feed/",
+      "terms": [
+        "lockbit"
+      ]
+    },
+    {
+      "id": "sentinelone-labs",
+      "name": "SentinelOne Labs",
+      "kind": "vendor",
+      "url": "https://www.sentinelone.com/labs/feed/",
+      "terms": [
+        "lockbit"
+      ]
+    }
+  ],
+  "knownReports": [
+    {
+      "title": "Indicators of Compromise Associated with LockBit 2.0 Ransomware",
+      "url": "https://www.ic3.gov/CSA/2022/220204.pdf"
+    },
+    {
+      "title": "#StopRansomware: LockBit 3.0",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-075a"
+    },
+    {
+      "title": "Understanding Ransomware Threat Actors: LockBit",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-165a"
+    },
+    {
+      "title": "LockBit 3.0 Update: Unpicking the Ransomware's Latest Anti-Analysis and Evasion Techniques",
+      "url": "https://www.sentinelone.com/labs/lockbit-3-0-update-unpicking-the-ransomwares-latest-anti-analysis-and-evasion-techniques/"
+    },
+    {
+      "title": "LockBit 2.0: How This RaaS Operates and How to Protect Against It",
+      "url": "https://unit42.paloaltonetworks.com/lockbit-2-ransomware/"
+    }
+  ]
+}

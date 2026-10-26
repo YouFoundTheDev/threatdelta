@@ -3,7 +3,7 @@ import { ArrowUpRight, CheckCircle2, Database, ShieldCheck, TriangleAlert } from
 import { Badge, PageHeader, Panel, SectionLabel } from "@/components/ui";
 import { SourceKindBadge, TechniqueCode } from "@/components/signals";
 import { caseFile, comparison, scoredHunts, validationIssues } from "@/lib/analysis";
-import { sigmaRules, sources, techniques } from "@/lib/data";
+import { dataset, monitoring, sigmaRules, sources, techniques } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Method & sources — ThreatDelta" };
@@ -39,7 +39,8 @@ export default function MethodPage() {
           <>
             <Badge tone="neutral">{caseFile.attackVersion}</Badge>
             <Badge tone="olive">Dataset check: {errors} errors</Badge>
-            <Badge tone="neutral">{formatDate(caseFile.asOf)} cut-off</Badge>
+            <Badge tone="neutral">Verified {formatDate(caseFile.verifiedAt)}</Badge>
+            <Badge tone="neutral">Historical cut-off {formatDate(caseFile.asOf)}</Badge>
           </>
         }
       />
@@ -62,6 +63,31 @@ export default function MethodPage() {
                   <p className="mt-1 font-display text-[28px] leading-none tabular">{value}</p>
                 </div>
               ))}
+            </div>
+            <div className="mt-4 grid gap-px border border-line bg-line sm:grid-cols-2">
+              <div className="bg-surface px-3 py-2.5">
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-muted">Historical period</p>
+                <p className="mt-1 text-[11px] leading-4 text-ink-soft">{caseFile.historicalPeriod} · ends {formatDate(caseFile.asOf)}</p>
+              </div>
+              <div className="bg-surface px-3 py-2.5">
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-muted">ATT&CK mapping</p>
+                <p className="mt-1 text-[11px] leading-4 text-ink-soft">{caseFile.attackVersion} · released {formatDate(caseFile.attackReleaseDate)}</p>
+              </div>
+              <div className="bg-surface px-3 py-2.5">
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-muted">Verified</p>
+                <p className="mt-1 text-[11px] leading-4 text-ink-soft">{formatDate(caseFile.verifiedAt)}</p>
+              </div>
+              <div className="bg-surface px-3 py-2.5">
+                <p className="font-mono text-[9px] uppercase tracking-[0.1em] text-muted">SigmaHQ snapshot</p>
+                <a
+                  href={`${dataset.sigma.repositoryUrl}/commit/${dataset.sigma.commit}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-1 block font-mono text-[10px] text-rust hover:underline"
+                >
+                  {dataset.sigma.commit.slice(0, 8)} · {formatDate(dataset.sigma.commitDate)}
+                </a>
+              </div>
             </div>
           </Panel>
 
@@ -150,7 +176,14 @@ export default function MethodPage() {
                 <article key={source.id} className="grid gap-2 py-4 sm:grid-cols-[120px_1fr] sm:gap-4">
                   <div>
                     <SourceKindBadge kind={source.kind} />
-                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.04em] text-muted">{formatDate(source.publishedAt)}</p>
+                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.04em] text-muted">
+                      Dated {formatDate(source.publishedAt)}
+                    </p>
+                    {source.retrievedAt ? (
+                      <p className="mt-0.5 font-mono text-[8px] uppercase tracking-[0.04em] text-muted">
+                        Verified {formatDate(source.retrievedAt)}
+                      </p>
+                    ) : null}
                   </div>
                   <div>
                     <a
@@ -172,6 +205,36 @@ export default function MethodPage() {
         </div>
 
         <aside className="space-y-5">
+          <div className="border border-line bg-surface px-4 py-4">
+            <div className="flex items-center gap-2">
+              <Database className="size-4 text-muted" />
+              <SectionLabel>Refresh pipeline</SectionLabel>
+            </div>
+            <p className="mt-2 text-[11px] font-medium text-ink">{monitoring.cadence}</p>
+            <p className="mt-1 text-[10px] leading-4 text-muted">
+              GitHub Actions checks ATT&amp;CK releases, the SigmaHQ commit, and {monitoring.reportFeeds.length} report feeds.
+              Machine-verifiable metadata opens a PR; new advisory findings require analyst mapping.
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1">
+              {monitoring.reportFeeds.map((feed) => (
+                <span key={feed.id} className="border border-line bg-paper-deep/40 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.04em] text-muted">
+                  {feed.name}
+                </span>
+              ))}
+            </div>
+            <a
+              href={monitoring.workflowUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-1 text-[10px] font-medium text-rust hover:underline"
+            >
+              View workflow runs <ArrowUpRight className="size-3" />
+            </a>
+            <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.04em] text-muted">
+              GitHub repository access required
+            </p>
+          </div>
+
           <div className="border border-line bg-surface px-4 py-4">
             <div className="flex items-center gap-2">
               <Database className="size-4 text-muted" />
@@ -206,7 +269,7 @@ export default function MethodPage() {
               <SectionLabel>SigmaHQ</SectionLabel>
             </div>
             <p className="mt-2 text-[10px] leading-4 text-muted">
-              The catalogue contains metadata from 15 real public rules, with links to the original YAML. Rule text remains under the SigmaHQ Detection Rule License 1.1. The catalogue is intentionally small and is not a detection product.
+              The catalogue contains metadata from {sigmaRules.length} real public rules, with links to the original YAML pinned to the verified SigmaHQ commit. Rule text remains under the SigmaHQ Detection Rule License 1.1. The catalogue is intentionally small and is not a detection product.
             </p>
             <a
               href="https://github.com/SigmaHQ/sigma"

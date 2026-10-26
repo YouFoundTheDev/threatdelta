@@ -6,6 +6,46 @@ export type CoverageStatus = "direct" | "broad" | "gap";
 export type MatchKind = "exact" | "parent" | "child";
 export type ConflictNature = "capability" | "taxonomy" | "coverage";
 
+export interface MonitoringFeed {
+  id: string;
+  name: string;
+  kind: "government" | "vendor";
+  url: string;
+  terms: string[];
+}
+
+export interface MonitoringConfig {
+  cadence: string;
+  workflowUrl: string;
+  attack: { indexUrl: string };
+  sigma: { commitApi: string; repositoryUrl: string };
+  reportFeeds: MonitoringFeed[];
+  knownReports: Array<{ title: string; url: string }>;
+}
+
+export interface AttackDataset {
+  attack: {
+    version: string;
+    releasedAt: string;
+    verifiedAt: string;
+    sourceUrl: string;
+    datasetUrl: string;
+    datasetSha256: string;
+    software: Record<string, {
+      name: string;
+      modifiedAt: string;
+      techniqueCount: number;
+    }>;
+  };
+  sigma: {
+    repositoryUrl: string;
+    commit: string;
+    commitDate: string;
+    verifiedAt: string;
+    ruleCount: number;
+  };
+}
+
 export interface Source {
   id: string;
   title: string;
@@ -33,8 +73,12 @@ export interface CaseFile {
   title: string;
   eyebrow: string;
   deck: string;
+  historicalPeriod: string;
   asOf: string;
   attackVersion: string;
+  attackReleaseDate: string;
+  verifiedAt: string;
+  attackSourceId: string;
   scope: string;
   universeNote: string;
   snapshots: Snapshot[];
@@ -208,6 +252,7 @@ export interface ReportOptions {
 
 export interface ReportInput {
   caseFile: CaseFile;
+  dataset: AttackDataset;
   sources: Source[];
   comparison: Comparison;
   coverage: CoverageResult;
