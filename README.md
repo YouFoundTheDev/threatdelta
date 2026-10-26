@@ -4,6 +4,8 @@ A small CTI analyst workbench for comparing public cyber-threat reporting, inspe
 
 Built with Next.js, TypeScript, Tailwind CSS and local JSON data. No backend, auth, paid APIs or required LLM calls.
 
+**Live demo:** [threatdelta.vercel.app](https://threatdelta.vercel.app) · **Source:** private GitHub repository
+
 ![ThreatDelta dashboard](screenshots/dashboard.png)
 
 ## What it does
