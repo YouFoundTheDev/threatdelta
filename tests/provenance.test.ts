@@ -48,7 +48,7 @@ describe("evidence provenance", () => {
     expect(dataset.sigma.ruleCount).toBe(sigmaRules.length);
     expect(caseFile.snapshots).toHaveLength(3);
     expect(observations.filter((observation) => observation.snapshotId === "lockbit-5.0-2026")).toHaveLength(8);
-    expect(sources).toHaveLength(13);
+    expect(sources).toHaveLength(15);
   });
 
   it("pins every Sigma rule to the verified commit and records verification dates", () => {

@@ -81,6 +81,33 @@
         "sourceId": "bitdefender-jan-2026",
         "note": "Back in the top 10 after a quiet 2025"
       }
-    ]
+    ],
+    "officialCheck": {
+      "checkedAt": "2026-10-26",
+      "summary": "No official LockBit 5.0 advisory or ATT&CK software entry found.",
+      "detail": "CISA’s advisory feed, the FBI IC3 CSA feed, MITRE ATT&CK v20.0 and Europol’s public LockBit coverage were checked on 26 Oct 2026. CISA and IC3 have no 2026 LockBit 5.0 advisory; ATT&CK has no LockBit 5.0 software entry; Europol’s latest LockBit actions are from 2024. The 2026 technique snapshot below is therefore vendor research, not an official advisory.",
+      "links": [
+        {
+          "label": "CISA advisories feed",
+          "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+        },
+        {
+          "label": "FBI IC3 CSA feed",
+          "url": "https://www.ic3.gov/CSA/rss"
+        },
+        {
+          "label": "MITRE ATT&CK v20.0 software",
+          "url": "https://attack.mitre.org/software/"
+        },
+        {
+          "label": "Europol LockBit update",
+          "url": "https://www.europol.europa.eu/media-press/newsroom/news/lockbit-power-cut-four-new-arrests-and-financial-sanctions-against-affiliates"
+        },
+        {
+          "label": "Europol LockBit measures",
+          "url": "https://www.europol.europa.eu/media-press/newsroom/news/new-measures-issued-against-lockbit"
+        }
+      ]
+    }
   }
 }

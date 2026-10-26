@@ -150,6 +150,9 @@ export default function DashboardPage() {
           <SectionLabel>2026 vendor snapshot</SectionLabel>
           <h2 className="mt-1 font-display text-[27px] leading-[1.02] tracking-[-0.02em]">{caseFile.currentReporting.headline}</h2>
           <p className="mt-2 max-w-2xl text-[11px] leading-5 text-muted">{caseFile.currentReporting.deck}</p>
+          <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.06em] text-muted">
+            Official check · {caseFile.currentReporting.officialCheck.summary}
+          </p>
         </div>
         <div className="bg-surface px-4 py-4">
           <div className="grid h-full gap-3 sm:grid-cols-2 lg:grid-cols-1">

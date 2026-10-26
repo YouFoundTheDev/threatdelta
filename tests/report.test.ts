@@ -51,6 +51,7 @@ describe("report exports", () => {
     expect(markdown).toContain("Data verified: 2026-10-26");
     expect(markdown).toContain("## 2026 vendor snapshot");
     expect(markdown).toContain("T1055.012");
+    expect(markdown).toContain("Official check (2026-10-26)");
     expect(markdown).toContain("Detection coverage");
     expect(markdown).toContain("Credential-led SMB fan-out");
     expect(markdown).toContain("https://www.ic3.gov/CSA/2022/220204.pdf");
@@ -98,7 +99,7 @@ describe("report exports", () => {
     expect(json.coverage.summary.covered).toBe(11);
     expect(json.coverage.summary.covered).toBe(datasetStats.coverage.covered);
     expect(json.coverage.summary.broad).toBe(1);
-    expect(json.sources).toHaveLength(13);
+    expect(json.sources).toHaveLength(15);
     expect(json.sources).toHaveLength(sources.length);
     expect(json.evidence).toHaveLength(68);
     expect(json.current.coverage.summary).toMatchObject({ total: 8, direct: 4, broad: 1, gap: 3 });

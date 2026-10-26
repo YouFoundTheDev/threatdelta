@@ -177,6 +177,22 @@ export function validateDataset(data: DatasetInput): ValidationIssue[] {
       });
     }
   }
+  const officialCheck = data.caseFile.currentReporting?.officialCheck;
+  if (!officialCheck) {
+    issues.push({ level: "error", message: "The 2026 official-source check is missing" });
+  } else {
+    if (officialCheck.checkedAt !== data.caseFile.verifiedAt) {
+      issues.push({ level: "error", message: "The 2026 official-source check date is stale" });
+    }
+    if (officialCheck.links.length < 2) {
+      issues.push({ level: "error", message: "The 2026 official-source check needs source links" });
+    }
+    for (const link of officialCheck.links) {
+      if (!isHttpUrl(link.url)) {
+        issues.push({ level: "error", message: `Official source check has an invalid URL: ${link.label}` });
+      }
+    }
+  }
 
   for (const observation of data.observations) {
     const prefix = `${observation.snapshotId}/${observation.techniqueId}`;

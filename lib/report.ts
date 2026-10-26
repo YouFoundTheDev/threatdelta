@@ -171,6 +171,12 @@ export function buildMarkdownReport(input: ReportInput, options: ReportOptions):
       "",
       `**Scope.** ${caseFile.currentReporting.caveat}`,
       "",
+      `**Official check (${caseFile.currentReporting.officialCheck.checkedAt}).** ${caseFile.currentReporting.officialCheck.detail}`,
+      "",
+      ...caseFile.currentReporting.officialCheck.links.map(
+        (link) => `- Official source: [${link.label}](${link.url})`,
+      ),
+      "",
       `- Snapshot: ${currentSnapshot?.label ?? caseFile.currentReporting.snapshotId}`,
       `- Historical diff cut-off: ${caseFile.asOf}`,
       `- 2026 observations: ${current.length}`,

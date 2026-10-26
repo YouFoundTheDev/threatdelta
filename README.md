@@ -13,7 +13,7 @@ Built with Next.js, TypeScript, Tailwind CSS and local JSON data. No backend, au
 - **2026 vendor snapshot:** LockBit 5.0, 8 techniques from Acronis and AhnLab; activity context from Check Point and Bitdefender
 - **Last verified:** 26 October 2026
 - **SigmaHQ snapshot:** commit `05d1031` (21 October 2026), 19 rules pinned to that commit
-- **Evidence footprint:** 68 findings, 118 evidence entries and 13 sources
+- **Evidence footprint:** 68 findings, 118 evidence entries and 15 sources
 
 The 2022–2023 dates are the historical case. The 2026 page is separate vendor reporting, not an official advisory and not part of the historical diff counts.
 
@@ -81,7 +81,7 @@ The 2022–2023 diff is still the core case. Separately, the **2026 reporting** 
 - 8 techniques, 4 with exact Sigma coverage, 1 parent-tagged and 3 gaps.
 - **Process hollowing (`T1055.012`)** is the only technique not already in the 3.0 mapping.
 - 163 claimed victims in Q1 2026 (Check Point) and 112 in December 2025 (Bitdefender).
-- This is vendor research, not an official advisory and not a complete intrusion chain. A technique missing there is unexamined, not gone.
+- **Official check (26 Oct 2026):** CISA and FBI IC3 feeds have no 2026 LockBit 5.0 advisory, MITRE ATT&CK v20.0 has no LockBit 5.0 software entry, and Europol's latest LockBit actions are from 2024. The technical snapshot is vendor research, not an official advisory and not a complete intrusion chain. A technique missing there is unexamined, not gone.
 
 ## Screenshots
 
@@ -185,6 +185,8 @@ The UI shows every factor and its points. Priority is a planning heuristic, not 
 - AhnLab ASEC, *In-Depth Analysis Report on LockBit 5.0: Operation and Countermeasures*, 5 Jan 2026 — https://asec.ahnlab.com/en/91945/
 - Check Point Research, *The State of Ransomware – Q1 2026*, 11 May 2026 — https://research.checkpoint.com/2026/the-state-of-ransomware-q1-2026/
 - Bitdefender, *Bitdefender Threat Debrief | January 2026*, 13 Jan 2026 — https://www.bitdefender.com/en-us/blog/businessinsights/bitdefender-threat-debrief-january-2026
+- Europol, *LockBit power cut: four new arrests and financial sanctions against affiliates*, 1 Oct 2024 — https://www.europol.europa.eu/media-press/newsroom/news/lockbit-power-cut-four-new-arrests-and-financial-sanctions-against-affiliates
+- Europol, *New measures issued against LockBit*, 7 May 2024 — https://www.europol.europa.eu/media-press/newsroom/news/new-measures-issued-against-lockbit
 - SigmaHQ, public detection rules at commit `05d1031` (21 Oct 2026) — https://github.com/SigmaHQ/sigma/commit/05d1031f537e830b76da53bae2400c5814c89165
 
 Unit 42 and SentinelOne are background for MITRE mappings cited in the dataset. The 2026 Acronis/AhnLab pieces drive the 2026 technique snapshot; Check Point and Bitdefender are activity context only.

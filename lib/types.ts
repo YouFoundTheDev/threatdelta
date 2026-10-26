@@ -68,11 +68,19 @@ export interface Snapshot {
   limitations: string;
 }
 
+export interface OfficialCheck {
+  checkedAt: string;
+  summary: string;
+  detail: string;
+  links: Array<{ label: string; url: string }>;
+}
+
 export interface CurrentReporting {
   snapshotId: string;
   headline: string;
   deck: string;
   caveat: string;
+  officialCheck: OfficialCheck;
   activity: Array<{
     label: string;
     value: string;

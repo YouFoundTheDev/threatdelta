@@ -50,6 +50,26 @@
     "retrievedAt": "2026-10-26"
   },
   {
+    "id": "europol-lockbit-2024-05",
+    "title": "New measures issued against LockBit",
+    "publisher": "Europol",
+    "kind": "government",
+    "publishedAt": "2024-05-07",
+    "retrievedAt": "2026-10-26",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/new-measures-issued-against-lockbit",
+    "note": "Official Europol update on measures against LockBit. Used as official context; no 2026 LockBit 5.0 advisory was found."
+  },
+  {
+    "id": "europol-lockbit-2024-10",
+    "title": "LockBit power cut: four new arrests and financial sanctions against affiliates",
+    "publisher": "Europol",
+    "kind": "government",
+    "publishedAt": "2024-10-01",
+    "retrievedAt": "2026-10-26",
+    "url": "https://www.europol.europa.eu/media-press/newsroom/news/lockbit-power-cut-four-new-arrests-and-financial-sanctions-against-affiliates",
+    "note": "Official Europol update on Operation Cronos. Used as the latest official LockBit context; it is not a 2026 technical advisory."
+  },
+  {
     "id": "mitre-s1199",
     "title": "MITRE ATT&CK v20.0 — LockBit 2.0 (S1199)",
     "publisher": "MITRE ATT&CK",

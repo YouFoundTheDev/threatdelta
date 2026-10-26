@@ -59,6 +59,28 @@ export default function CurrentReportingPage() {
         </a>
       </div>
 
+      <Panel className="mt-4 border-l-2 border-ink/40 px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <SectionLabel>Official status</SectionLabel>
+          <Badge tone="neutral">Checked {formatDate(caseFile.currentReporting.officialCheck.checkedAt)}</Badge>
+        </div>
+        <p className="mt-2 text-[12px] font-medium text-ink">{caseFile.currentReporting.officialCheck.summary}</p>
+        <p className="mt-1 max-w-4xl text-[10px] leading-4 text-muted">{caseFile.currentReporting.officialCheck.detail}</p>
+        <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+          {caseFile.currentReporting.officialCheck.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-0.5 text-[9px] text-muted hover:text-rust"
+            >
+              {link.label} <ArrowUpRight className="size-2.5" />
+            </a>
+          ))}
+        </div>
+      </Panel>
+
       <section className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3" aria-label="2026 activity context">
         {caseFile.currentReporting.activity.map((item) => {
           const source = sourceById.get(item.sourceId);

@@ -2,6 +2,15 @@
 
 All notable changes to ThreatDelta are recorded here. The project is a case-study workbench, not a production CTI platform.
 
+## [0.1.3] — 2026-10-26
+
+### Fixed
+
+- Added an explicit official-source check for the 2026 snapshot. CISA and FBI IC3 feeds, MITRE ATT&CK v20.0 and Europol were checked on 26 Oct 2026.
+- Clarified that no official LockBit 5.0 advisory or ATT&CK software entry exists as of that date. The 2026 technical findings remain vendor research and are labelled as such throughout.
+- Added Europol's 2024 LockBit actions as the latest official context, plus direct links to the CISA/IC3 feeds and MITRE software list.
+- Updated source counts to 15 and added official-status validation and report output.
+
 ## [0.1.2] — 2026-10-26
 
 ### Added
